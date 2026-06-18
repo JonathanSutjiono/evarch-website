@@ -16,10 +16,13 @@ export function RegulationCards() {
             <article className="regulation-card" key={article.title}>
               <div className="article-meta">
                 <span>{article.category}</span>
+                <span>{article.date}</span>
                 <span>{article.readTime}</span>
               </div>
-              <h3>{article.title}</h3>
-              <p>{article.description}</p>
+              <div className="article-copy">
+                <h3>{article.title}</h3>
+                <p>{article.description}</p>
+              </div>
               <span className="article-number">{String(index + 1).padStart(2, "0")}</span>
             </article>
           ))}

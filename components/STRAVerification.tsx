@@ -17,14 +17,16 @@ export function STRAVerification() {
         <SectionHeader
           eyebrow="Licensed Architect Verification"
           title="STRA Verification"
-          description="For transparency, clients may verify architect registration through the official Dewan Arsitek Indonesia STRA Directory."
+          description="EVARCH.ID supports transparent and professional architectural practice. Clients may verify architect registration through the official Dewan Arsitek Indonesia STRA Directory."
         />
 
         <div className="stra-panel">
-          <div className="stra-seal" aria-label="STRA Registered Architect Verification Available">
-            <span>STRA</span>
-            <strong>Registered Architect</strong>
-            <small>Verification Available</small>
+          <div className="stra-seal-wrap">
+            <div className="stra-seal" aria-label="STRA Registered Architect Verification Available">
+              <span>STRA</span>
+              <strong>Registered Architect</strong>
+              <small>Verification Available</small>
+            </div>
           </div>
           <div className="stra-badge">
             <ShieldCheckIcon />

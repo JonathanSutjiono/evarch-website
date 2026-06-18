@@ -1,5 +1,6 @@
 export type RegulationArticle = {
   category: string;
+  date: string;
   title: string;
   description: string;
   readTime: string;
@@ -8,6 +9,7 @@ export type RegulationArticle = {
 export const regulations: RegulationArticle[] = [
   {
     category: "Professional Practice",
+    date: "2026",
     title: "Understanding STRA for Architectural Services",
     description:
       "A concise introduction to architect registration and why transparent verification matters for clients.",
@@ -15,6 +17,7 @@ export const regulations: RegulationArticle[] = [
   },
   {
     category: "Building Preparation",
+    date: "2026",
     title: "PBG/IMB Considerations Before Building",
     description:
       "Key planning questions to review before design development, documentation, and permit coordination.",
@@ -22,6 +25,7 @@ export const regulations: RegulationArticle[] = [
   },
   {
     category: "Project Roles",
+    date: "2026",
     title: "Architect, Contractor, and Interior Designer: What's the Difference?",
     description:
       "A practical overview of professional roles so project responsibilities are clear from the beginning.",

@@ -32,11 +32,41 @@ html {
 }
 
 body {
+  position: relative;
   margin: 0;
   overflow-x: hidden;
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+body::before {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, rgba(28, 28, 26, 0.035) 1px, transparent 1px),
+    linear-gradient(0deg, rgba(28, 28, 26, 0.025) 1px, transparent 1px);
+  background-size: 96px 96px;
+  content: "";
+  mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.55), transparent 68%);
+  z-index: 0;
+}
+
+main {
+  position: relative;
+  z-index: 1;
+  overflow: clip;
+}
+
+.site-header,
+.site-footer {
+  position: relative;
+  z-index: 1;
+}
+
+.site-header {
+  position: sticky;
 }
 
 a {
@@ -78,6 +108,21 @@ a:focus-visible {
   display: grid;
   gap: 24px;
   margin-bottom: clamp(38px, 6vw, 76px);
+}
+
+.section-heading::after {
+  display: block;
+  width: 100%;
+  height: 1px;
+  background: var(--line);
+  content: "";
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 900ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.reveal.is-visible .section-heading::after {
+  transform: scaleX(1);
 }
 
 .section-heading-grid {
@@ -448,6 +493,7 @@ a:focus-visible {
 
 .works-section {
   overflow: hidden;
+  min-height: clamp(780px, 96svh, 1040px);
 }
 
 .works-kicker {
@@ -475,6 +521,13 @@ a:focus-visible {
   align-items: center;
   justify-content: space-between;
   gap: 18px;
+  position: sticky;
+  top: 78px;
+  z-index: 3;
+  border-block: 1px solid rgba(28, 28, 26, 0.08);
+  background: rgba(247, 244, 238, 0.9);
+  padding-block: 14px;
+  backdrop-filter: blur(14px);
 }
 
 .works-showcase-top p {
@@ -540,7 +593,7 @@ a:focus-visible {
 }
 
 .project-card {
-  flex: 0 0 min(84vw, 1080px);
+  flex: 0 0 min(86vw, 1120px);
   min-width: 0;
   scroll-snap-align: start;
   scroll-snap-stop: always;
@@ -549,7 +602,7 @@ a:focus-visible {
 
 .project-image {
   position: relative;
-  height: clamp(470px, 68vh, 760px);
+  height: clamp(520px, 72vh, 820px);
   overflow: hidden;
   border: 1px solid var(--line);
   background: var(--sand);
@@ -570,11 +623,17 @@ a:focus-visible {
 .project-image::after {
   position: absolute;
   content: "";
-  border: 1px solid rgba(28, 28, 26, 0.15);
+  border: 1px solid rgba(28, 28, 26, 0.16);
   background: rgba(255, 253, 248, 0.48);
   transition:
     inset 420ms cubic-bezier(0.22, 1, 0.36, 1),
     transform 420ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.project-image::before {
+  box-shadow:
+    28px 28px 0 rgba(255, 253, 248, 0.18),
+    -18px 44px 0 rgba(169, 104, 76, 0.055);
 }
 
 .project-image::before {
@@ -607,15 +666,47 @@ a:focus-visible {
 }
 
 .project-image-1 {
-  background: linear-gradient(145deg, #eee6d9, #fffdf8 55%, #d8cec0);
+  background:
+    linear-gradient(90deg, rgba(28, 28, 26, 0.055) 1px, transparent 1px),
+    linear-gradient(0deg, rgba(28, 28, 26, 0.045) 1px, transparent 1px),
+    linear-gradient(145deg, #eee6d9, #fffdf8 55%, #d8cec0);
+  background-size:
+    70px 70px,
+    70px 70px,
+    auto;
 }
 
 .project-image-2 {
-  background: linear-gradient(145deg, #e5e0d7, #f9f5ed 52%, #c9c2b7);
+  background:
+    linear-gradient(120deg, transparent 0 48%, rgba(169, 104, 76, 0.09) 49% 51%, transparent 52%),
+    linear-gradient(145deg, #e5e0d7, #f9f5ed 52%, #c9c2b7);
 }
 
 .project-image-3 {
-  background: linear-gradient(145deg, #f2ece3, #ded2c2 58%, #fbf8f1);
+  background:
+    radial-gradient(circle at 22% 20%, rgba(255, 253, 248, 0.72) 0 10%, transparent 11%),
+    linear-gradient(145deg, #f2ece3, #ded2c2 58%, #fbf8f1);
+}
+
+.project-image-4 {
+  background:
+    linear-gradient(90deg, transparent 0 20%, rgba(28, 28, 26, 0.06) 20% 20.2%, transparent 20.3%),
+    linear-gradient(145deg, #e9e4dc, #fffdf8 48%, #cfc7ba);
+}
+
+.project-image-5 {
+  background:
+    linear-gradient(0deg, transparent 0 62%, rgba(169, 104, 76, 0.1) 62% 62.4%, transparent 62.5%),
+    linear-gradient(145deg, #f4eee4, #ddd6ca 48%, #fdfaf4);
+}
+
+.project-image-6 {
+  background:
+    linear-gradient(90deg, rgba(28, 28, 26, 0.045) 1px, transparent 1px),
+    linear-gradient(145deg, #e4ded4, #fbf8f1 52%, #d1c6b8);
+  background-size:
+    48px 48px,
+    auto;
 }
 
 .project-meta {
@@ -751,10 +842,18 @@ a:focus-visible {
   border-right: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
   padding: clamp(24px, 3vw, 34px);
+  transition:
+    background-color 180ms ease,
+    padding-left 220ms ease;
 }
 
 .expertise-card:nth-child(3n) {
   border-right: 0;
+}
+
+.expertise-card:hover {
+  background: rgba(255, 253, 248, 0.48);
+  padding-left: clamp(30px, 4vw, 44px);
 }
 
 .expertise-card p,
@@ -775,6 +874,13 @@ a:focus-visible {
   padding: clamp(26px, 4vw, 42px);
 }
 
+.stra-seal-wrap {
+  display: grid;
+  place-items: center start;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 28px;
+}
+
 .stra-seal {
   position: relative;
   display: grid;
@@ -790,6 +896,14 @@ a:focus-visible {
     radial-gradient(circle, transparent 55%, rgba(169, 104, 76, 0.09) 56%),
     var(--paper);
   overflow: hidden;
+  transition:
+    border-color 180ms ease,
+    transform 220ms ease;
+}
+
+.stra-panel:hover .stra-seal {
+  border-color: rgba(169, 104, 76, 0.9);
+  transform: rotate(-1deg) translateY(-2px);
 }
 
 .stra-seal::before {
@@ -880,27 +994,32 @@ a:focus-visible {
 
 .regulation-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
   border-top: 1px solid var(--line);
 }
 
 .regulation-card {
   position: relative;
-  min-height: 350px;
+  display: grid;
+  grid-template-columns: minmax(180px, 0.32fr) minmax(0, 1fr) 64px;
+  gap: clamp(24px, 5vw, 74px);
+  align-items: start;
+  min-height: 230px;
   min-width: 0;
-  border-right: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
   padding: clamp(24px, 3vw, 36px);
+  transition:
+    background-color 180ms ease,
+    padding-left 220ms ease;
 }
 
-.regulation-card:nth-child(3n) {
-  border-right: 0;
+.regulation-card:hover {
+  background: rgba(255, 253, 248, 0.56);
+  padding-left: clamp(30px, 4vw, 48px);
 }
 
 .article-meta {
-  display: flex;
-  justify-content: space-between;
-  gap: 18px;
+  display: grid;
+  gap: 10px;
   color: var(--clay);
   font-size: 0.66rem;
   font-weight: 700;
@@ -909,10 +1028,14 @@ a:focus-visible {
   text-transform: uppercase;
 }
 
+.article-copy h3 {
+  margin-top: 0;
+  font-size: clamp(1.45rem, 3vw, 3rem);
+}
+
 .article-number {
-  position: absolute;
-  left: clamp(24px, 3vw, 36px);
-  bottom: clamp(24px, 3vw, 36px);
+  justify-self: end;
+  color: rgba(169, 104, 76, 0.72);
 }
 
 .process-list {
@@ -922,14 +1045,41 @@ a:focus-visible {
   padding: 0;
   border-top: 1px solid var(--line);
   list-style: none;
+  counter-reset: process;
 }
 
 .process-list li {
+  position: relative;
   display: grid;
   grid-template-columns: 56px minmax(0, 1fr);
   gap: 18px;
   border-bottom: 1px solid var(--line);
   padding: 30px 24px 30px 0;
+  transition:
+    background-color 180ms ease,
+    padding-left 220ms ease;
+}
+
+.process-list li::after {
+  position: absolute;
+  right: 24px;
+  bottom: -1px;
+  left: 0;
+  height: 1px;
+  background: var(--clay);
+  content: "";
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 360ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.process-list li:hover {
+  background: rgba(255, 253, 248, 0.42);
+  padding-left: 18px;
+}
+
+.process-list li:hover::after {
+  transform: scaleX(1);
 }
 
 .contact-section {
@@ -1193,6 +1343,10 @@ a:focus-visible {
   .contact-panel dl {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
+
+  .regulation-card {
+    grid-template-columns: minmax(150px, 0.35fr) minmax(0, 1fr) 52px;
+  }
 }
 
 @media (max-width: 860px) {
@@ -1251,6 +1405,10 @@ a:focus-visible {
     height: clamp(420px, 64vh, 620px);
   }
 
+  .works-section {
+    min-height: auto;
+  }
+
   .project-content {
     grid-template-columns: 1fr;
     gap: 14px;
@@ -1269,7 +1427,13 @@ a:focus-visible {
   }
 
   .regulation-card {
-    padding-bottom: 72px;
+    grid-template-columns: 1fr;
+    gap: 22px;
+    padding-bottom: clamp(24px, 3vw, 36px);
+  }
+
+  .article-number {
+    justify-self: start;
   }
 
   .process-list li {
@@ -1320,6 +1484,10 @@ a:focus-visible {
 
   .project-image {
     height: clamp(360px, 58vh, 520px);
+  }
+
+  .works-showcase-top {
+    position: static;
   }
 
   .brand-mark {

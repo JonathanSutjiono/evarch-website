@@ -55,7 +55,7 @@ export function WorksGrid() {
         <div className="works-track" ref={scrollerRef}>
           {projects.map((project, index) => (
             <article className="project-card" key={project.title}>
-              <div className={`project-image project-image-${(index % 3) + 1}`}>
+              <div className={`project-image project-image-${index + 1}`}>
                 <span>
                   {String(index + 1).padStart(2, "0")} / {String(projects.length).padStart(2, "0")}
                 </span>
