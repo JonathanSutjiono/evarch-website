@@ -622,91 +622,67 @@ a:focus-visible {
 .project-image::before,
 .project-image::after {
   position: absolute;
+  inset: 0;
   content: "";
-  border: 1px solid rgba(28, 28, 26, 0.16);
-  background: rgba(255, 253, 248, 0.48);
-  transition:
-    inset 420ms cubic-bezier(0.22, 1, 0.36, 1),
-    transform 420ms cubic-bezier(0.22, 1, 0.36, 1);
+  pointer-events: none;
+  z-index: 1;
 }
 
 .project-image::before {
-  box-shadow:
-    28px 28px 0 rgba(255, 253, 248, 0.18),
-    -18px 44px 0 rgba(169, 104, 76, 0.055);
-}
-
-.project-image::before {
-  inset: 16% 18% 31% 20%;
+  background:
+    linear-gradient(180deg, rgba(28, 28, 26, 0.08), transparent 36%),
+    linear-gradient(0deg, rgba(28, 28, 26, 0.18), transparent 42%);
 }
 
 .project-image::after {
-  inset: 43% 11% 14% 38%;
-  background: rgba(169, 104, 76, 0.08);
-}
-
-.project-card:hover .project-image::before {
-  inset: 12% 15% 28% 17%;
-  transform: scale(1.025);
+  border: 1px solid rgba(255, 253, 248, 0.28);
+  background:
+    linear-gradient(90deg, rgba(255, 253, 248, 0.16) 1px, transparent 1px),
+    linear-gradient(0deg, rgba(255, 253, 248, 0.13) 1px, transparent 1px);
+  background-size: 72px 72px;
+  opacity: 0.42;
+  transition: opacity 260ms ease;
 }
 
 .project-card:hover .project-image::after {
-  inset: 40% 8% 11% 35%;
-  transform: scale(1.035);
+  opacity: 0.18;
+}
+
+.project-photo {
+  object-fit: cover;
+  transform: scale(1);
+  transition:
+    filter 360ms ease,
+    transform 620ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.project-card:hover .project-photo {
+  filter: saturate(0.96) contrast(1.03);
+  transform: scale(1.045);
 }
 
 .project-image span {
   position: absolute;
   left: 18px;
   top: 16px;
-  color: rgba(28, 28, 26, 0.5);
+  color: rgba(255, 253, 248, 0.92);
   font-family: var(--font-geist-mono);
   font-size: 0.76rem;
-  z-index: 1;
+  text-shadow: 0 1px 18px rgba(28, 28, 26, 0.28);
+  z-index: 2;
 }
 
-.project-image-1 {
-  background:
-    linear-gradient(90deg, rgba(28, 28, 26, 0.055) 1px, transparent 1px),
-    linear-gradient(0deg, rgba(28, 28, 26, 0.045) 1px, transparent 1px),
-    linear-gradient(145deg, #eee6d9, #fffdf8 55%, #d8cec0);
-  background-size:
-    70px 70px,
-    70px 70px,
-    auto;
-}
-
-.project-image-2 {
-  background:
-    linear-gradient(120deg, transparent 0 48%, rgba(169, 104, 76, 0.09) 49% 51%, transparent 52%),
-    linear-gradient(145deg, #e5e0d7, #f9f5ed 52%, #c9c2b7);
-}
-
-.project-image-3 {
-  background:
-    radial-gradient(circle at 22% 20%, rgba(255, 253, 248, 0.72) 0 10%, transparent 11%),
-    linear-gradient(145deg, #f2ece3, #ded2c2 58%, #fbf8f1);
-}
-
-.project-image-4 {
-  background:
-    linear-gradient(90deg, transparent 0 20%, rgba(28, 28, 26, 0.06) 20% 20.2%, transparent 20.3%),
-    linear-gradient(145deg, #e9e4dc, #fffdf8 48%, #cfc7ba);
-}
-
-.project-image-5 {
-  background:
-    linear-gradient(0deg, transparent 0 62%, rgba(169, 104, 76, 0.1) 62% 62.4%, transparent 62.5%),
-    linear-gradient(145deg, #f4eee4, #ddd6ca 48%, #fdfaf4);
-}
-
-.project-image-6 {
-  background:
-    linear-gradient(90deg, rgba(28, 28, 26, 0.045) 1px, transparent 1px),
-    linear-gradient(145deg, #e4ded4, #fbf8f1 52%, #d1c6b8);
-  background-size:
-    48px 48px,
-    auto;
+.project-image-caption {
+  position: absolute;
+  right: 18px;
+  bottom: 16px;
+  color: rgba(255, 253, 248, 0.76);
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  text-shadow: 0 1px 18px rgba(28, 28, 26, 0.28);
+  z-index: 2;
 }
 
 .project-meta {
@@ -732,17 +708,69 @@ a:focus-visible {
 
 .project-content {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  gap: 24px;
+  grid-template-columns: minmax(0, 0.82fr) minmax(320px, 0.48fr);
+  gap: clamp(24px, 4vw, 58px);
   align-items: end;
   margin-top: 20px;
   border-bottom: 1px solid var(--line);
   padding-bottom: 22px;
 }
 
+.project-info {
+  display: grid;
+  gap: 18px;
+  justify-items: end;
+  text-align: right;
+}
+
 .project-card:hover .project-meta {
   opacity: 1;
   transform: translateY(-2px);
+}
+
+.project-detail {
+  display: grid;
+  gap: 8px;
+  max-width: 420px;
+  color: var(--muted);
+  font-size: 0.82rem;
+  line-height: 1.65;
+}
+
+.project-detail p {
+  margin: 0;
+}
+
+.project-detail span {
+  display: block;
+  margin-bottom: 2px;
+  color: var(--clay);
+  font-size: 0.64rem;
+  font-weight: 700;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+.project-link {
+  position: relative;
+  color: var(--charcoal);
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  transition:
+    color 180ms ease,
+    transform 180ms ease;
+}
+
+.project-link::after {
+  content: " ->";
+  color: var(--clay);
+}
+
+.project-card:hover .project-link {
+  color: var(--clay-dark);
+  transform: translateX(4px);
 }
 
 .project-card h3,
@@ -1416,6 +1444,15 @@ a:focus-visible {
 
   .project-meta {
     justify-content: flex-start;
+  }
+
+  .project-info {
+    justify-items: start;
+    text-align: left;
+  }
+
+  .project-detail {
+    max-width: none;
   }
 
   .expertise-card,

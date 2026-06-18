@@ -15,11 +15,11 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL("https://evarch.id"),
   title: {
-    default: "EVARCH.ID | Architecture Studio",
+    default: "EVARCH.ID - Architecture Studio & STRA-Verified Architect",
     template: "%s | EVARCH.ID",
   },
   description:
-    "EVARCH.ID is an architecture studio for residential, commercial, planning, consultation, and regulation-aware architectural design.",
+    "EVARCH.ID is an architecture studio for residential and commercial design, planning consultation, and regulation-aware architectural practice in Indonesia.",
   keywords: [
     "EVARCH.ID",
     "architecture studio Jakarta",
@@ -30,9 +30,9 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "EVARCH.ID" }],
   openGraph: {
-    title: "EVARCH.ID | Architecture Studio",
+    title: "EVARCH.ID - Architecture Studio & STRA-Verified Architect",
     description:
-      "Architecture with clarity, context, and compliance for residential and commercial projects.",
+      "Residential and commercial architecture, planning consultation, and regulation-aware architectural practice in Indonesia.",
     url: "https://evarch.id",
     siteName: "EVARCH.ID",
     locale: "en_ID",

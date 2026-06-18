@@ -2,6 +2,7 @@
 
 import { projects } from "@/data/projects";
 import { SectionHeader } from "@/components/SectionHeader";
+import Image from "next/image";
 import { useRef } from "react";
 
 export function WorksGrid() {
@@ -56,18 +57,44 @@ export function WorksGrid() {
           {projects.map((project, index) => (
             <article className="project-card" key={project.title}>
               <div className={`project-image project-image-${index + 1}`}>
+                <Image
+                  src={project.image}
+                  alt={project.imageAlt}
+                  fill
+                  sizes="(max-width: 860px) 86vw, 86vw"
+                  className="project-photo"
+                  priority={index === 0}
+                />
                 <span>
                   {String(index + 1).padStart(2, "0")} / {String(projects.length).padStart(2, "0")}
                 </span>
+                <div className="project-image-caption" aria-hidden="true">
+                  Temporary preview image
+                </div>
               </div>
               <div className="project-content">
                 <div>
                   <h3>{project.title}</h3>
                   <p className="project-location">{project.location}</p>
                 </div>
-                <div className="project-meta">
-                  <p>{project.category}</p>
-                  <p>{project.year}</p>
+                <div className="project-info">
+                  <div className="project-meta">
+                    <p>{project.category}</p>
+                    <p>{project.year}</p>
+                  </div>
+                  <div className="project-detail">
+                    <p>
+                      <span>Scope</span>
+                      {project.scope}
+                    </p>
+                    <p>
+                      <span>Status</span>
+                      {project.status}
+                    </p>
+                  </div>
+                  <a className="project-link" href="#contact" aria-label={`Discuss ${project.title}`}>
+                    View Project
+                  </a>
                 </div>
               </div>
             </article>
