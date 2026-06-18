@@ -8,7 +8,7 @@ export function Hero() {
         <div className="hero-copy">
           <p className="eyebrow">EVARCH.ID - Architecture Studio</p>
           <h1>
-            Architecture
+            <span>Architecture</span>
             <span>with clarity,</span>
             <span>context, and</span>
             <span>compliance.</span>
