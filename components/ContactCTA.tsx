@@ -6,18 +6,32 @@ export function ContactCTA() {
       <div className="site-container contact-grid">
         <div>
           <p className="eyebrow">Contact</p>
-          <h2>Start with a clear brief and a professional design conversation.</h2>
+          <h2>Start with a clear architectural brief.</h2>
         </div>
         <div className="contact-panel">
-          <a
-            className="button button-dark"
-            href={site.whatsappUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Consult via WhatsApp
-          </a>
+          <div className="contact-actions">
+            <a
+              className="button button-dark"
+              href={site.whatsappUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Consult via WhatsApp
+            </a>
+            <a
+              className="button button-light"
+              href={site.straUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Verify STRA
+            </a>
+          </div>
           <dl>
+            <div>
+              <dt>Location</dt>
+              <dd>{site.location}</dd>
+            </div>
             <div>
               <dt>Email</dt>
               <dd>
@@ -25,8 +39,8 @@ export function ContactCTA() {
               </dd>
             </div>
             <div>
-              <dt>Location</dt>
-              <dd>{site.location}</dd>
+              <dt>WhatsApp</dt>
+              <dd>https://wa.me/62XXXXXXXXXXX</dd>
             </div>
           </dl>
         </div>

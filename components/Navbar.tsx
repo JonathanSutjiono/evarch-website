@@ -23,6 +23,15 @@ export function Navbar() {
           ))}
         </div>
 
+        <a
+          className="nav-cta"
+          href={site.whatsappUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Consult
+        </a>
+
         <button
           className="menu-button"
           type="button"
@@ -43,6 +52,14 @@ export function Navbar() {
               {item.label}
             </Link>
           ))}
+          <a
+            href={site.whatsappUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => setIsOpen(false)}
+          >
+            Consult
+          </a>
         </div>
       ) : null}
     </header>

@@ -7,8 +7,8 @@ export function WorksGrid() {
       <div className="site-container">
         <SectionHeader
           eyebrow="Selected Works"
-          title="Quiet architecture shaped by site, brief, and proportion."
-          description="A static preview of EVARCH.ID project typologies, ready for real project imagery when the portfolio assets are available."
+          title="Selected Works"
+          description="A portfolio-first preview of residential, commercial, and renovation work shaped through proportion, context, and clear architectural intent."
         />
 
         <div className="works-grid">

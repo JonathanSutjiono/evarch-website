@@ -20,7 +20,7 @@ export const expertise: Expertise[] = [
       "Interior planning, spatial atmosphere, material direction, and detailing aligned with the architecture.",
   },
   {
-    title: "Planning & Design Consultation",
+    title: "Planning & Consultation",
     description:
       "Early-stage guidance for project feasibility, spatial strategy, scope clarity, and design direction.",
   },

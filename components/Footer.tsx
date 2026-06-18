@@ -9,7 +9,7 @@ export function Footer() {
           <Link className="footer-brand" href="#home">
             {site.name}
           </Link>
-          <p>Architecture, consultation, and regulation-aware design practice.</p>
+          <p>Architecture Studio</p>
         </div>
         <div className="footer-links">
           {navigation.map((item) => (
@@ -17,7 +17,13 @@ export function Footer() {
               {item.label}
             </Link>
           ))}
+          <a href={site.straUrl} target="_blank" rel="noopener noreferrer">
+            STRA Verification
+          </a>
         </div>
+      </div>
+      <div className="site-container footer-bottom">
+        <span>Copyright 2026 EVARCH.ID</span>
       </div>
     </footer>
   );

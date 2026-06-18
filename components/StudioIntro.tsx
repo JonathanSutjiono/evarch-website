@@ -5,23 +5,26 @@ export function StudioIntro() {
     <section id="studio" className="studio-section section-pad">
       <div className="site-container studio-grid">
         <SectionHeader
-          eyebrow="Studio Profile"
-          title="A measured studio for residential, commercial, and consultation work."
-          description="EVARCH.ID approaches architecture as a balance between spatial clarity, client intent, site context, and the professional responsibilities behind every building."
+          eyebrow="Studio"
+          title="Studio"
+          description="EVARCH.ID works across residential, commercial, and interior architecture with a focus on proportion, context, buildability, and compliance."
         />
 
         <div className="studio-notes">
           <div>
             <span>01</span>
-            <p>Design decisions are developed through proportion, material restraint, and practical coordination.</p>
+            <h3>Contextual Design</h3>
+            <p>Architecture shaped by site conditions, scale, climate, daily rhythm, and client priorities.</p>
           </div>
           <div>
             <span>02</span>
-            <p>Each project begins with a clear brief, regulation awareness, and a realistic path from concept to documentation.</p>
+            <h3>Functional Planning</h3>
+            <p>Plans are developed for clarity, comfort, circulation, efficiency, and long-term use.</p>
           </div>
           <div>
             <span>03</span>
-            <p>The studio supports clients who need credible design advice before committing to a build.</p>
+            <h3>Professional Documentation</h3>
+            <p>Design work is prepared with coordination, approvals, and responsible practice in mind.</p>
           </div>
         </div>
       </div>

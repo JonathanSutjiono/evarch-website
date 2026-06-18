@@ -7,16 +7,20 @@ export function RegulationCards() {
       <div className="site-container">
         <SectionHeader
           eyebrow="Regulation"
-          title="Useful notes for clients before design and construction decisions."
-          description="Short static primers that frame architectural service, building approval, and project role expectations."
+          title="Regulation"
+          description="Notes on architectural compliance, professional practice, and building preparation."
         />
 
         <div className="regulation-grid">
           {regulations.map((article, index) => (
             <article className="regulation-card" key={article.title}>
-              <span>{String(index + 1).padStart(2, "0")}</span>
+              <div className="article-meta">
+                <span>{article.category}</span>
+                <span>{article.readTime}</span>
+              </div>
               <h3>{article.title}</h3>
               <p>{article.description}</p>
+              <span className="article-number">{String(index + 1).padStart(2, "0")}</span>
             </article>
           ))}
         </div>

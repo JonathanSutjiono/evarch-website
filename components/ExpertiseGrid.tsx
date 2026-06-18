@@ -7,8 +7,8 @@ export function ExpertiseGrid() {
       <div className="site-container">
         <SectionHeader
           eyebrow="Expertise"
-          title="Architecture services with calm structure and clear deliverables."
-          description="From private homes to commercial environments, EVARCH.ID helps define the right scope before the design becomes complex."
+          title="Expertise"
+          description="Refined architectural services organized as clear scopes, from early planning to design development and documentation."
         />
 
         <div className="expertise-grid">

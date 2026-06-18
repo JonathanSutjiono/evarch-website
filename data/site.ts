@@ -1,7 +1,7 @@
 export const site = {
   name: "EVARCH.ID",
   description:
-    "EVARCH.ID is an architecture studio delivering thoughtful residential and commercial design with professional architectural standards and regulation-aware practice.",
+    "An architecture studio delivering thoughtful residential and commercial design through professional standards, contextual planning, and regulation-aware practice.",
   headline: "Architecture with clarity, context, and compliance.",
   url: "https://evarch.id",
   email: "hello@evarch.id",
@@ -11,7 +11,6 @@ export const site = {
 };
 
 export const navigation = [
-  { label: "Home", href: "#home" },
   { label: "Studio", href: "#studio" },
   { label: "Works", href: "#works" },
   { label: "Expertise", href: "#expertise" },
