@@ -13,9 +13,9 @@ export type Project = {
 export const projects: Project[] = [
   {
     title: "House in Serpong",
-    category: "Residential",
-    location: "Tangerang Selatan",
-    year: "2026",
+    category: "Residential Architecture",
+    location: "Serpong, Tangerang",
+    year: "2024",
     scope: "Concept Design, Space Planning, Design Development",
     status: "Concept Portfolio",
     image:
@@ -25,11 +25,11 @@ export const projects: Project[] = [
   },
   {
     title: "Residence in Kelapa Gading",
-    category: "Residential",
-    location: "North Jakarta",
+    category: "Residential Architecture",
+    location: "Kelapa Gading, Jakarta",
     year: "2025",
-    scope: "Residential Architecture, Facade Study, Spatial Planning",
-    status: "Sample Work",
+    scope: "Facade Concept, Spatial Planning, Documentation",
+    status: "Concept Portfolio",
     image:
       "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=2200&q=85",
     imageAlt:
@@ -37,10 +37,10 @@ export const projects: Project[] = [
   },
   {
     title: "Villa in Bali",
-    category: "Hospitality Residential",
+    category: "Villa Architecture",
     location: "Bali",
-    year: "2025",
-    scope: "Villa Concept, Open Living Planning, Material Direction",
+    year: "2024",
+    scope: "Tropical Concept, Interior Architecture, Planning",
     status: "Concept Portfolio",
     image:
       "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=2200&q=85",
@@ -49,11 +49,11 @@ export const projects: Project[] = [
   },
   {
     title: "Office in Menteng",
-    category: "Commercial",
-    location: "Central Jakarta",
-    year: "2024",
-    scope: "Commercial Architecture, Workspace Planning, Design Development",
-    status: "Sample Work",
+    category: "Commercial Architecture",
+    location: "Menteng, Jakarta",
+    year: "2025",
+    scope: "Office Planning, Facade Direction, Interior Architecture",
+    status: "Concept Portfolio",
     image:
       "https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=2200&q=85",
     imageAlt:
@@ -61,10 +61,10 @@ export const projects: Project[] = [
   },
   {
     title: "Commercial Space in Jakarta",
-    category: "Retail",
+    category: "Commercial Architecture",
     location: "Jakarta",
-    year: "2024",
-    scope: "Commercial Planning, Facade Direction, Customer Flow Study",
+    year: "2025",
+    scope: "Retail Planning, Brand Space, Design Development",
     status: "Concept Portfolio",
     image:
       "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=2200&q=85",
@@ -73,11 +73,11 @@ export const projects: Project[] = [
   },
   {
     title: "Private House Renovation",
-    category: "Renovation",
+    category: "Renovation / Interior Architecture",
     location: "Jakarta",
-    year: "2023",
-    scope: "Interior Architecture, Renovation Planning, Detail Coordination",
-    status: "Sample Work",
+    year: "2024",
+    scope: "Renovation Concept, Interior Planning, Space Optimization",
+    status: "Concept Portfolio",
     image:
       "https://images.unsplash.com/photo-1600210492493-0946911123ea?auto=format&fit=crop&w=2200&q=85",
     imageAlt:

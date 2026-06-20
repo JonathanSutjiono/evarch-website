@@ -23,6 +23,7 @@ export function RegulationCards() {
                 <h3>{article.title}</h3>
                 <p>{article.description}</p>
               </div>
+              <span className="article-arrow" aria-hidden="true">-&gt;</span>
               <span className="article-number">{String(index + 1).padStart(2, "0")}</span>
             </article>
           ))}

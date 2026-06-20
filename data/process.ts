@@ -13,7 +13,7 @@ export const processSteps: ProcessStep[] = [
     description: "Review context, constraints, opportunities, and project requirements.",
   },
   {
-    title: "Concept Design",
+    title: "Concept Direction",
     description: "Develop the architectural idea, spatial organization, and design character.",
   },
   {
@@ -25,7 +25,7 @@ export const processSteps: ProcessStep[] = [
     description: "Prepare clear design documents for communication, review, and coordination.",
   },
   {
-    title: "Project Coordination",
+    title: "Coordination",
     description: "Support alignment between client intent, consultants, and execution teams.",
   },
 ];

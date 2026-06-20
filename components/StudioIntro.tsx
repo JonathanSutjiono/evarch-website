@@ -3,7 +3,7 @@ import { SectionHeader } from "@/components/SectionHeader";
 export function StudioIntro() {
   return (
     <section id="studio" className="studio-section section-pad">
-      <div className="site-container studio-grid">
+      <div className="site-container">
         <SectionHeader
           eyebrow="Studio"
           title="Studio"
@@ -13,19 +13,25 @@ export function StudioIntro() {
         <div className="studio-notes">
           <div>
             <span>01</span>
-            <h3>Contextual Design</h3>
+            <h3>Context</h3>
             <p>Architecture shaped by site conditions, scale, climate, daily rhythm, and client priorities.</p>
           </div>
           <div>
             <span>02</span>
-            <h3>Functional Planning</h3>
+            <h3>Clarity</h3>
             <p>Plans are developed for clarity, comfort, circulation, efficiency, and long-term use.</p>
           </div>
           <div>
             <span>03</span>
-            <h3>Professional Documentation</h3>
+            <h3>Compliance</h3>
             <p>Design work is prepared with coordination, approvals, and responsible practice in mind.</p>
           </div>
+        </div>
+        <div className="studio-labels" aria-label="Studio service areas">
+          <span>Residential</span>
+          <span>Commercial</span>
+          <span>Planning</span>
+          <span>Documentation</span>
         </div>
       </div>
     </section>

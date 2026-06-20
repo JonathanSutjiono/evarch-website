@@ -7,6 +7,9 @@ export function ContactCTA() {
         <div>
           <p className="eyebrow">Contact</p>
           <h2>Start with a clear architectural brief.</h2>
+          <p className="contact-copy">
+            Discuss your site, brief, and project direction with EVARCH.ID before moving into design development.
+          </p>
         </div>
         <div className="contact-panel">
           <div className="contact-actions">
@@ -24,7 +27,7 @@ export function ContactCTA() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              Verify STRA
+              Verify STRA Registration
             </a>
           </div>
           <dl>

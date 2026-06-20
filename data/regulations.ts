@@ -8,7 +8,7 @@ export type RegulationArticle = {
 
 export const regulations: RegulationArticle[] = [
   {
-    category: "Professional Practice",
+    category: "STRA",
     date: "2026",
     title: "Understanding STRA for Architectural Services",
     description:
@@ -16,7 +16,7 @@ export const regulations: RegulationArticle[] = [
     readTime: "4 min read",
   },
   {
-    category: "Building Preparation",
+    category: "PBG / IMB",
     date: "2026",
     title: "PBG/IMB Considerations Before Building",
     description:
@@ -24,7 +24,7 @@ export const regulations: RegulationArticle[] = [
     readTime: "5 min read",
   },
   {
-    category: "Project Roles",
+    category: "Professional Practice",
     date: "2026",
     title: "Architect, Contractor, and Interior Designer: What's the Difference?",
     description:

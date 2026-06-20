@@ -26,11 +26,19 @@ export function Hero() {
             >
               Verify STRA
             </a>
+            <a
+              className="button button-text"
+              href={site.whatsappUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Consult via WhatsApp
+            </a>
           </div>
           <div className="hero-meta" aria-label="Studio services">
-            <span>Residential</span>
-            <span>Commercial</span>
-            <span>Planning</span>
+            <span>Jakarta, Indonesia</span>
+            <span>Residential / Commercial</span>
+            <span>Planning Consultation</span>
             <span>STRA Verification</span>
           </div>
         </div>
@@ -42,6 +50,9 @@ export function Hero() {
           <div className="hero-visual-caption">Context / Plan / Compliance</div>
         </div>
       </div>
+      <a className="hero-scroll-indicator" href="#works" aria-label="Scroll to selected works">
+        <span>Scroll to explore</span>
+      </a>
     </section>
   );
 }
