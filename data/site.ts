@@ -8,6 +8,11 @@ export const site = {
   location: "Jakarta, Indonesia",
   whatsappUrl: "https://wa.me/62XXXXXXXXXXX",
   straUrl: "https://appv2.dewanarsitek.id/direktoristra",
+  // Temporary hero image. Replace with real EVARCH hero/project image before final production.
+  heroImage:
+    "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=2400&q=88",
+  heroImageAlt:
+    "Temporary presentation image of bright contemporary architecture for the EVARCH homepage hero.",
 };
 
 export const navigation = [

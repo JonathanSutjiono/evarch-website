@@ -1,14 +1,24 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { navigation, site } from "@/data/site";
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const updateHeader = () => setIsScrolled(window.scrollY > 32);
+
+    updateHeader();
+    window.addEventListener("scroll", updateHeader, { passive: true });
+
+    return () => window.removeEventListener("scroll", updateHeader);
+  }, []);
 
   return (
-    <header className="site-header">
+    <header className={`site-header ${isScrolled || isOpen ? "is-scrolled" : ""}`}>
       <nav className="nav-shell" aria-label="Primary navigation">
         <Link className="brand-mark" href="#home" onClick={() => setIsOpen(false)}>
           <span className="brand-symbol">EV</span>
