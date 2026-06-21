@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { site } from "@/data/site";
 
 export function Hero() {
@@ -43,10 +44,16 @@ export function Hero() {
           </div>
         </div>
 
-        <div className="hero-visual" aria-label="Architectural massing study">
-          <div className="hero-plane hero-plane-a" />
-          <div className="hero-plane hero-plane-b" />
-          <div className="hero-plane hero-plane-c" />
+        <div className="hero-visual">
+          <Image
+            src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=2200&q=85"
+            alt="Temporary presentation image of bright modern architecture for the EVARCH studio preview."
+            fill
+            sizes="(max-width: 1050px) 100vw, 40vw"
+            className="hero-photo"
+            priority
+          />
+          <div className="hero-photo-overlay" aria-hidden="true" />
           <div className="hero-visual-caption">Context / Plan / Compliance</div>
         </div>
       </div>
