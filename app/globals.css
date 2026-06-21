@@ -1116,6 +1116,22 @@ a:focus-visible {
   padding-bottom: 28px;
 }
 
+.stra-client-logo {
+  display: grid;
+  width: clamp(178px, 20vw, 230px);
+  aspect-ratio: 1;
+  place-items: center;
+  border: 1px solid var(--line);
+  background: var(--warm-white);
+  padding: 24px;
+}
+
+.stra-logo-image {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
 .stra-seal {
   position: relative;
   display: grid;
@@ -1218,6 +1234,13 @@ a:focus-visible {
   margin-top: 8px;
   color: var(--muted);
   line-height: 1.7;
+}
+
+.stra-disclaimer {
+  margin: -8px 0 0;
+  color: var(--muted);
+  font-size: 0.72rem;
+  line-height: 1.65;
 }
 
 .stra-actions,
