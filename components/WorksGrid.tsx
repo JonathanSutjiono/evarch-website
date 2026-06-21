@@ -68,9 +68,6 @@ export function WorksGrid() {
                 <span>
                   {String(index + 1).padStart(2, "0")} / {String(projects.length).padStart(2, "0")}
                 </span>
-                <div className="project-image-caption" aria-hidden="true">
-                  Temporary preview image
-                </div>
               </div>
               <div className="project-content">
                 <div>

@@ -866,19 +866,6 @@ a:focus-visible {
   z-index: 2;
 }
 
-.project-image-caption {
-  position: absolute;
-  right: 18px;
-  bottom: 16px;
-  color: rgba(255, 253, 248, 0.76);
-  font-size: 0.66rem;
-  font-weight: 700;
-  letter-spacing: 0.13em;
-  text-transform: uppercase;
-  text-shadow: 0 1px 18px rgba(28, 28, 26, 0.28);
-  z-index: 2;
-}
-
 .project-meta {
   display: flex;
   flex-wrap: wrap;
@@ -2030,6 +2017,10 @@ a:focus-visible {
     bottom: 16px;
     width: 48px;
     height: 48px;
+  }
+
+  .site-footer {
+    padding-bottom: 84px;
   }
 }
 

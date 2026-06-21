@@ -62,7 +62,11 @@ export function ContactCTA() {
             </div>
             <div>
               <dt>WhatsApp</dt>
-              <dd>https://wa.me/62XXXXXXXXXXX</dd>
+              <dd>
+                <a href={site.whatsappUrl} target="_blank" rel="noopener noreferrer">
+                  Open WhatsApp consultation
+                </a>
+              </dd>
             </div>
           </dl>
         </div>
