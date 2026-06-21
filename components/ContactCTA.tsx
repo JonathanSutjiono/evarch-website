@@ -30,6 +30,25 @@ export function ContactCTA() {
               Verify STRA Registration
             </a>
           </div>
+          <div className="contact-credential">
+            <div className="contact-credential-mark" aria-hidden="true">
+              <span>STRA</span>
+              <small>Registered</small>
+            </div>
+            <div className="contact-credential-copy">
+              <p>Licensed Practice</p>
+              <strong>Architect registration verification available</strong>
+              <span>Official verification is completed through the Dewan Arsitek Indonesia directory.</span>
+            </div>
+            <a
+              href={site.straUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Open official STRA directory"
+            >
+              -&gt;
+            </a>
+          </div>
           <dl>
             <div>
               <dt>Location</dt>
