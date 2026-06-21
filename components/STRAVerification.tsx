@@ -1,27 +1,6 @@
-import { existsSync } from "node:fs";
-import { join } from "node:path";
 import Image from "next/image";
 import { site } from "@/data/site";
 import { SectionHeader } from "@/components/SectionHeader";
-
-const clientLogoCandidates = [
-  {
-    file: "stra-logo.png",
-    src: "/logo/stra-logo.png",
-    alt: "Client-provided STRA logo",
-  },
-  {
-    file: "iai-logo.png",
-    src: "/logo/iai-logo.png",
-    alt: "Client-provided IAI logo",
-  },
-];
-
-function getClientProvidedLogo() {
-  return clientLogoCandidates.find(({ file }) =>
-    existsSync(join(process.cwd(), "public", "logo", file)),
-  );
-}
 
 function ShieldCheckIcon() {
   return (
@@ -33,8 +12,6 @@ function ShieldCheckIcon() {
 }
 
 export function STRAVerification() {
-  const clientLogo = getClientProvidedLogo();
-
   return (
     <section id="stra" className="stra-section section-pad">
       <div className="site-container stra-grid">
@@ -45,40 +22,15 @@ export function STRAVerification() {
         />
 
         <div className="stra-panel">
-          <div className="stra-seal-wrap">
-            {clientLogo ? (
-              <div className="stra-client-logo">
-                <Image
-                  src={clientLogo.src}
-                  alt={clientLogo.alt}
-                  width={220}
-                  height={220}
-                  className="stra-logo-image"
-                />
-              </div>
-            ) : (
-              <div
-                className="stra-seal"
-                aria-label="STRA Registered Architect Official Directory Verification"
-              >
-                <span>STRA</span>
-                <strong>Registered Architect</strong>
-                <small>Official Directory Verification</small>
-              </div>
-            )}
-          </div>
           <div className="stra-badge">
             <ShieldCheckIcon />
             <div>
-              <strong>Licensed Architect Verification</strong>
+              <strong>Registered Architect Verification</strong>
               <span>
-                Verification is performed through the official Dewan Arsitek Indonesia STRA Directory.
+                Verification through Dewan Arsitek Indonesia STRA Directory
               </span>
             </div>
           </div>
-          <p className="stra-disclaimer">
-            Directory access is provided for independent registration verification. No organizational affiliation is implied.
-          </p>
           <div className="stra-actions">
             <a
               className="button button-dark"
@@ -97,6 +49,32 @@ export function STRAVerification() {
               Consult via WhatsApp
             </a>
           </div>
+          <div className="stra-seal-wrap">
+            <div className="stra-identity-row">
+              <div
+                className="stra-seal"
+                aria-label="STRA Registered Architect Official Directory Verification"
+              >
+                <span>STRA</span>
+                <strong>Registered Architect</strong>
+                <small>Official Directory Verification</small>
+              </div>
+              <div className="dai-logo-card">
+                <Image
+                  src="/logo/dai-logo-full.jpeg"
+                  alt="Dewan Arsitek Indonesia logo"
+                  width={1024}
+                  height={595}
+                  sizes="(max-width: 600px) 70vw, 220px"
+                  className="dai-logo-image"
+                />
+                <p>Verification through Dewan Arsitek Indonesia STRA Directory</p>
+              </div>
+            </div>
+          </div>
+          <p className="stra-disclaimer">
+            Directory access is provided for independent registration verification. No organizational affiliation is implied.
+          </p>
         </div>
       </div>
     </section>
