@@ -18,17 +18,23 @@ export function StudioIntro({ content = fallbackContent.about }: StudioIntroProp
         <div className="studio-notes">
           {content.values.map((value, index) => (
             <div key={`${value.title}-${index}`}>
-              <span>{String(index + 1).padStart(2, "0")}</span>
+              <div className="studio-principle-meta">
+                <span>{String(index + 1).padStart(2, "0")}</span>
+                <small>Design principle</small>
+              </div>
               <h3>{value.title}</h3>
               <p>{value.description}</p>
             </div>
           ))}
         </div>
-        <div className="studio-labels" aria-label="Studio service areas">
-          <span>Residential</span>
-          <span>Commercial</span>
-          <span>Planning</span>
-          <span>Documentation</span>
+        <div className="studio-capabilities">
+          <p>Practice areas</p>
+          <div className="studio-labels" aria-label="Studio service areas">
+            <span>Residential</span>
+            <span>Commercial</span>
+            <span>Planning</span>
+            <span>Documentation</span>
+          </div>
         </div>
       </div>
     </section>
