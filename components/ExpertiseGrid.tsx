@@ -23,8 +23,9 @@ export function ExpertiseGrid({
         />
 
         <div className="expertise-grid">
-          {items.map((item) => (
+          {items.map((item, index) => (
             <article className="expertise-card" key={item.title}>
+              <span className="expertise-index">{String(index + 1).padStart(2, "0")}</span>
               <h3>{item.title}</h3>
               <p>{item.description}</p>
             </article>
