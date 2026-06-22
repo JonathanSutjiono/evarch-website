@@ -1,29 +1,52 @@
 import { site } from "@/data/site";
+import { fallbackContent, type ResolvedHomeContent } from "@/sanity/lib/fallback";
 
-export function ContactCTA() {
+type ContactCTAProps = {
+  content?: ResolvedHomeContent["contact"];
+  verificationUrl?: string;
+};
+
+function safeMapEmbedUrl(value: string | null) {
+  if (!value) return null;
+
+  try {
+    const url = new URL(value);
+    const isGoogleHost = url.hostname === "www.google.com" || url.hostname === "maps.google.com";
+    return url.protocol === "https:" && isGoogleHost && url.pathname.startsWith("/maps/embed")
+      ? url.toString()
+      : null;
+  } catch {
+    return null;
+  }
+}
+
+export function ContactCTA({
+  content = fallbackContent.contact,
+  verificationUrl = site.straUrl,
+}: ContactCTAProps) {
+  const mapEmbedUrl = safeMapEmbedUrl(content.googleMapsEmbedUrl);
+
   return (
     <section id="contact" className="contact-section section-pad">
       <div className="site-container contact-grid">
         <div>
           <p className="eyebrow">Contact</p>
-          <h2>Start with a clear architectural brief.</h2>
-          <p className="contact-copy">
-            Discuss your site, brief, and project direction with EVARCH.ID before moving into design development.
-          </p>
+          <h2>{content.heading}</h2>
+          <p className="contact-copy">{content.description}</p>
         </div>
         <div className="contact-panel">
           <div className="contact-actions">
             <a
               className="button button-dark"
-              href={site.whatsappUrl}
+              href={content.whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
             >
-              Consult via WhatsApp
+              {content.whatsappButtonLabel}
             </a>
             <a
               className="button button-light"
-              href={site.straUrl}
+              href={verificationUrl}
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -41,7 +64,7 @@ export function ContactCTA() {
               <span>Official verification is completed through the Dewan Arsitek Indonesia directory.</span>
             </div>
             <a
-              href={site.straUrl}
+              href={verificationUrl}
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Open official STRA directory"
@@ -52,25 +75,41 @@ export function ContactCTA() {
           <dl>
             <div>
               <dt>Location</dt>
-              <dd>{site.location}</dd>
+              <dd>{content.address}</dd>
             </div>
             <div>
               <dt>Email</dt>
               <dd>
-                <a href={`mailto:${site.email}`}>{site.email}</a>
+                <a href={`mailto:${content.email}`}>{content.email}</a>
               </dd>
             </div>
             <div>
               <dt>WhatsApp</dt>
               <dd>
-                <a href={site.whatsappUrl} target="_blank" rel="noopener noreferrer">
+                <a href={content.whatsappUrl} target="_blank" rel="noopener noreferrer">
                   Open WhatsApp consultation
                 </a>
               </dd>
             </div>
           </dl>
+          {content.googleMapsUrl ? (
+            <a className="contact-map-link" href={content.googleMapsUrl} target="_blank" rel="noopener noreferrer">
+              Open location in Google Maps
+            </a>
+          ) : null}
         </div>
       </div>
+      {mapEmbedUrl ? (
+        <div className="site-container contact-map">
+          <iframe
+            src={mapEmbedUrl}
+            title="EVARCH.ID location map"
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+            allowFullScreen
+          />
+        </div>
+      ) : null}
     </section>
   );
 }

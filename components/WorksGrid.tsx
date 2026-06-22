@@ -1,11 +1,21 @@
 "use client";
 
-import { projects } from "@/data/projects";
 import { SectionHeader } from "@/components/SectionHeader";
 import Image from "next/image";
 import { useRef } from "react";
+import { fallbackContent, type ResolvedHomeContent } from "@/sanity/lib/fallback";
 
-export function WorksGrid() {
+type WorksGridProps = {
+  projects?: ResolvedHomeContent["projects"];
+  title?: string;
+  subtitle?: string;
+};
+
+export function WorksGrid({
+  projects = fallbackContent.projects,
+  title = fallbackContent.homepage.selectedWorksTitle,
+  subtitle = fallbackContent.homepage.selectedWorksSubtitle,
+}: WorksGridProps) {
   const scrollerRef = useRef<HTMLDivElement>(null);
 
   function scrollWorks(direction: "previous" | "next") {
@@ -35,8 +45,8 @@ export function WorksGrid() {
 
         <SectionHeader
           eyebrow="Selected Works"
-          title="Selected Works"
-          description="A portfolio-first preview of residential, commercial, and renovation work shaped through proportion, context, and clear architectural intent."
+          title={title}
+          description={subtitle}
         />
       </div>
 

@@ -1,10 +1,23 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useEffect, useState } from "react";
 import { navigation, site } from "@/data/site";
 
-export function Navbar() {
+type NavbarProps = {
+  companyName?: string;
+  logoUrl?: string | null;
+  logoMarkUrl?: string | null;
+  whatsappUrl?: string;
+};
+
+export function Navbar({
+  companyName = site.name,
+  logoUrl = null,
+  logoMarkUrl = null,
+  whatsappUrl = site.whatsappUrl,
+}: NavbarProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
@@ -21,8 +34,20 @@ export function Navbar() {
     <header className={`site-header ${isScrolled || isOpen ? "is-scrolled" : ""}`}>
       <nav className="nav-shell" aria-label="Primary navigation">
         <Link className="brand-mark" href="#home" onClick={() => setIsOpen(false)}>
-          <span className="brand-symbol">EV</span>
-          <span>{site.name}</span>
+          {logoUrl ? (
+            <Image src={logoUrl} alt={`${companyName} logo`} width={180} height={48} className="brand-logo" priority />
+          ) : (
+            <>
+              <span className="brand-symbol">
+                {logoMarkUrl ? (
+                  <Image src={logoMarkUrl} alt="" width={38} height={38} className="brand-logo-mark" />
+                ) : (
+                  "EV"
+                )}
+              </span>
+              <span>{companyName}</span>
+            </>
+          )}
         </Link>
 
         <div className="desktop-nav">
@@ -35,7 +60,7 @@ export function Navbar() {
 
         <a
           className="nav-cta"
-          href={site.whatsappUrl}
+          href={whatsappUrl}
           target="_blank"
           rel="noopener noreferrer"
         >
@@ -63,7 +88,7 @@ export function Navbar() {
             </Link>
           ))}
           <a
-            href={site.whatsappUrl}
+            href={whatsappUrl}
             target="_blank"
             rel="noopener noreferrer"
             onClick={() => setIsOpen(false)}

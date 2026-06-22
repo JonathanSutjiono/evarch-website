@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { ContactCTA } from "@/components/ContactCTA";
 import { ExpertiseGrid } from "@/components/ExpertiseGrid";
 import { FloatingWhatsApp } from "@/components/FloatingWhatsApp";
@@ -10,37 +11,86 @@ import { Reveal } from "@/components/Reveal";
 import { STRAVerification } from "@/components/STRAVerification";
 import { StudioIntro } from "@/components/StudioIntro";
 import { WorksGrid } from "@/components/WorksGrid";
+import { safeSanityFetch } from "@/sanity/lib/client";
+import { resolveHomeContent, type CmsHomeResponse } from "@/sanity/lib/fallback";
+import { urlForImage } from "@/sanity/lib/image";
+import { homePageQuery, siteSettingsQuery } from "@/sanity/lib/queries";
 
-export default function Home() {
+type CmsSiteSettings = NonNullable<CmsHomeResponse["siteSettings"]>;
+
+export async function generateMetadata(): Promise<Metadata> {
+  const settings = await safeSanityFetch<CmsSiteSettings>(siteSettingsQuery);
+  const title = settings?.defaultSeoTitle || "EVARCH.ID - Architecture Studio & STRA-Verified Architect";
+  const description = settings?.defaultSeoDescription ||
+    "EVARCH.ID is an architecture studio for residential and commercial design, planning consultation, and regulation-aware architectural practice in Indonesia.";
+  const ogImage = urlForImage(settings?.defaultOgImage, 1600);
+  const favicon = urlForImage(settings?.favicon, 96);
+
+  return {
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+      url: "https://evarch.id",
+      siteName: "EVARCH.ID",
+      type: "website",
+      images: ogImage ? [{ url: ogImage }] : undefined,
+    },
+    icons: favicon ? { icon: favicon } : undefined,
+  };
+}
+
+export default async function Home() {
+  const sanityData = await safeSanityFetch<CmsHomeResponse>(homePageQuery);
+  const content = resolveHomeContent(sanityData);
+
   return (
     <>
-      <Navbar />
+      <Navbar
+        companyName={content.site.companyName}
+        logoUrl={content.site.logoUrl}
+        logoMarkUrl={content.site.logoMarkUrl}
+        whatsappUrl={content.site.whatsappUrl}
+      />
       <main>
-        <Hero />
+        <Hero content={content.homepage} whatsappUrl={content.site.whatsappUrl} />
         <Reveal>
-          <WorksGrid />
+          <WorksGrid
+            projects={content.projects}
+            title={content.homepage.selectedWorksTitle}
+            subtitle={content.homepage.selectedWorksSubtitle}
+          />
         </Reveal>
         <Reveal>
-          <StudioIntro />
+          <StudioIntro content={content.about} />
         </Reveal>
         <Reveal>
-          <ExpertiseGrid />
+          <ExpertiseGrid
+            items={content.expertise}
+            title={content.homepage.expertiseTitle}
+            subtitle={content.homepage.expertiseSubtitle}
+          />
         </Reveal>
         <Reveal>
-          <STRAVerification />
+          <STRAVerification content={content.stra} whatsappUrl={content.site.whatsappUrl} />
         </Reveal>
         <Reveal>
-          <RegulationCards />
+          <RegulationCards items={content.regulations} />
         </Reveal>
         <Reveal>
           <ProcessSteps />
         </Reveal>
         <Reveal>
-          <ContactCTA />
+          <ContactCTA content={content.contact} verificationUrl={content.stra.verificationUrl} />
         </Reveal>
       </main>
-      <Footer />
-      <FloatingWhatsApp />
+      <Footer
+        content={content.footer}
+        companyName={content.site.companyName}
+        verificationUrl={content.stra.verificationUrl}
+      />
+      <FloatingWhatsApp whatsappUrl={content.site.whatsappUrl} />
     </>
   );
 }

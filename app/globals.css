@@ -274,6 +274,19 @@ a:focus-visible {
   letter-spacing: 0.08em;
 }
 
+.brand-logo {
+  width: auto;
+  max-width: 180px;
+  height: 38px;
+  object-fit: contain;
+}
+
+.brand-logo-mark {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
 .desktop-nav {
   display: flex;
   align-items: center;
@@ -986,6 +999,33 @@ a:focus-visible {
 .contact-panel dd {
   color: var(--muted);
   line-height: 1.75;
+}
+
+.contact-map-link {
+  width: fit-content;
+  border-bottom: 1px solid currentColor;
+  color: var(--clay-dark);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.contact-map {
+  position: relative;
+  z-index: 1;
+  aspect-ratio: 16 / 6;
+  min-height: 320px;
+  margin-top: clamp(48px, 7vw, 88px);
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: var(--warm-white);
+}
+
+.contact-map iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
 }
 
 .studio-section,
@@ -2005,6 +2045,11 @@ a:focus-visible {
     grid-column: auto;
   }
 
+  .contact-map {
+    aspect-ratio: 4 / 5;
+    min-height: 380px;
+  }
+
   .hero-meta {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 12px 18px;
@@ -2103,4 +2148,40 @@ a:focus-visible {
   .works-controls button:hover {
     transform: none;
   }
+}
+
+.studio-setup-page {
+  display: grid;
+  min-height: 100svh;
+  place-items: center;
+  background: var(--background);
+  padding: 24px;
+}
+
+.studio-setup-panel {
+  width: min(100%, 680px);
+  border: 1px solid var(--line);
+  background: var(--warm-white);
+  padding: clamp(28px, 6vw, 64px);
+}
+
+.studio-setup-panel p {
+  margin: 0 0 18px;
+  color: var(--clay);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.studio-setup-panel h1 {
+  margin: 0 0 22px;
+  font-size: clamp(2rem, 5vw, 4.5rem);
+  font-weight: 500;
+  line-height: 1;
+}
+
+.studio-setup-panel span {
+  color: var(--muted);
+  line-height: 1.8;
 }

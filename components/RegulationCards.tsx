@@ -1,7 +1,12 @@
 import { regulations } from "@/data/regulations";
 import { SectionHeader } from "@/components/SectionHeader";
+import type { ResolvedHomeContent } from "@/sanity/lib/fallback";
 
-export function RegulationCards() {
+type RegulationCardsProps = {
+  items?: ResolvedHomeContent["regulations"];
+};
+
+export function RegulationCards({ items = regulations }: RegulationCardsProps) {
   return (
     <section id="regulation" className="regulation-section section-pad">
       <div className="site-container">
@@ -12,7 +17,7 @@ export function RegulationCards() {
         />
 
         <div className="regulation-grid">
-          {regulations.map((article, index) => (
+          {items.map((article, index) => (
             <article className="regulation-card" key={article.title}>
               <div className="article-meta">
                 <span>{article.category}</span>

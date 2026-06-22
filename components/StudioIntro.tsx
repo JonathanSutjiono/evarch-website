@@ -1,31 +1,28 @@
 import { SectionHeader } from "@/components/SectionHeader";
+import { fallbackContent, type ResolvedHomeContent } from "@/sanity/lib/fallback";
 
-export function StudioIntro() {
+type StudioIntroProps = {
+  content?: ResolvedHomeContent["about"];
+};
+
+export function StudioIntro({ content = fallbackContent.about }: StudioIntroProps) {
   return (
     <section id="studio" className="studio-section section-pad">
       <div className="site-container">
         <SectionHeader
           eyebrow="Studio"
-          title="Studio"
-          description="EVARCH.ID works across residential, commercial, and interior architecture with a focus on proportion, context, buildability, and compliance."
+          title={content.title}
+          description={content.text}
         />
 
         <div className="studio-notes">
-          <div>
-            <span>01</span>
-            <h3>Context</h3>
-            <p>Architecture shaped by site conditions, scale, climate, daily rhythm, and client priorities.</p>
-          </div>
-          <div>
-            <span>02</span>
-            <h3>Clarity</h3>
-            <p>Plans are developed for clarity, comfort, circulation, efficiency, and long-term use.</p>
-          </div>
-          <div>
-            <span>03</span>
-            <h3>Compliance</h3>
-            <p>Design work is prepared with coordination, approvals, and responsible practice in mind.</p>
-          </div>
+          {content.values.map((value, index) => (
+            <div key={`${value.title}-${index}`}>
+              <span>{String(index + 1).padStart(2, "0")}</span>
+              <h3>{value.title}</h3>
+              <p>{value.description}</p>
+            </div>
+          ))}
         </div>
         <div className="studio-labels" aria-label="Studio service areas">
           <span>Residential</span>

@@ -1,13 +1,24 @@
 import Link from "next/link";
 import Image from "next/image";
 import { site } from "@/data/site";
+import { fallbackContent, type ResolvedHomeContent } from "@/sanity/lib/fallback";
 
-export function Hero() {
+type HeroProps = {
+  content?: ResolvedHomeContent["homepage"];
+  whatsappUrl?: string;
+};
+
+export function Hero({
+  content = fallbackContent.homepage,
+  whatsappUrl = site.whatsappUrl,
+}: HeroProps) {
+  const titleLines = content.heroTitle.split("\n").filter(Boolean);
+
   return (
     <section id="home" className="hero-section section-pad">
       <Image
-        src={site.heroImage}
-        alt={site.heroImageAlt}
+        src={content.heroImageUrl}
+        alt={content.heroImageAlt}
         fill
         sizes="100vw"
         className="hero-background-image"
@@ -18,27 +29,26 @@ export function Hero() {
 
       <div className="site-container hero-content">
         <div className="hero-copy">
-          <p className="eyebrow">EVARCH.ID - Architecture Studio</p>
+          <p className="eyebrow">{content.heroEyebrow}</p>
           <h1>
-            <span>Architecture with clarity,</span>
-            <span>context, and compliance.</span>
+            {titleLines.map((line) => <span key={line}>{line}</span>)}
           </h1>
-          <p className="hero-lede">{site.description}</p>
+          <p className="hero-lede">{content.heroSubtitle}</p>
           <div className="hero-actions">
-            <Link className="button button-dark" href="#works">
-              View Works
+            <Link className="button button-dark" href={content.primaryButtonLink}>
+              {content.primaryButtonLabel}
             </Link>
             <a
               className="button button-light"
-              href={site.straUrl}
+              href={content.secondaryButtonLink}
               target="_blank"
               rel="noopener noreferrer"
             >
-              Verify STRA
+              {content.secondaryButtonLabel}
             </a>
             <a
               className="button button-text"
-              href={site.whatsappUrl}
+              href={whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
             >
