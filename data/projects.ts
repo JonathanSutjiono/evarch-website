@@ -1,11 +1,11 @@
 export type Project = {
   title: string;
-  category: string;
-  location: string;
-  year: string;
-  scope: string;
-  status: string;
-  image: string;
+  category?: string;
+  location?: string;
+  year?: string;
+  scope?: string;
+  status?: string;
+  image?: string;
   imageAlt: string;
 };
 
@@ -19,7 +19,7 @@ export const projects: Project[] = [
     scope: "Concept Design, Space Planning, Design Development",
     status: "Concept Portfolio",
     image:
-      "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=2200&q=85",
+      "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1280&q=80",
     imageAlt:
       "Temporary presentation image of a modern tropical residence for EVARCH project preview.",
   },
@@ -31,7 +31,7 @@ export const projects: Project[] = [
     scope: "Facade Concept, Spatial Planning, Documentation",
     status: "Concept Portfolio",
     image:
-      "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=2200&q=85",
+      "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1280&q=80",
     imageAlt:
       "Temporary presentation image of a modern urban residence facade for EVARCH project preview.",
   },
@@ -43,7 +43,7 @@ export const projects: Project[] = [
     scope: "Tropical Concept, Interior Architecture, Planning",
     status: "Concept Portfolio",
     image:
-      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=2200&q=85",
+      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1280&q=80",
     imageAlt:
       "Temporary presentation image of a tropical villa with pool for EVARCH project preview.",
   },
@@ -55,7 +55,7 @@ export const projects: Project[] = [
     scope: "Office Planning, Facade Direction, Interior Architecture",
     status: "Concept Portfolio",
     image:
-      "https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=2200&q=85",
+      "https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1280&q=80",
     imageAlt:
       "Temporary presentation image of a modern office architecture concept for EVARCH project preview.",
   },
@@ -67,7 +67,7 @@ export const projects: Project[] = [
     scope: "Retail Planning, Brand Space, Design Development",
     status: "Concept Portfolio",
     image:
-      "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=2200&q=85",
+      "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1280&q=80",
     imageAlt:
       "Temporary presentation image of a contemporary commercial architecture concept for EVARCH project preview.",
   },
@@ -79,7 +79,7 @@ export const projects: Project[] = [
     scope: "Renovation Concept, Interior Planning, Space Optimization",
     status: "Concept Portfolio",
     image:
-      "https://images.unsplash.com/photo-1600210492493-0946911123ea?auto=format&fit=crop&w=2200&q=85",
+      "https://images.unsplash.com/photo-1600210492493-0946911123ea?auto=format&fit=crop&w=1280&q=80",
     imageAlt:
       "Temporary presentation image of a modern home renovation concept for EVARCH project preview.",
   },

@@ -4,5 +4,9 @@ import { NextStudio } from "next-sanity/studio/client-component";
 import config from "@/sanity.config";
 
 export function StudioClient() {
-  return <NextStudio config={config} />;
+  return (
+    <div className="evarch-studio">
+      <NextStudio config={config} />
+    </div>
+  );
 }

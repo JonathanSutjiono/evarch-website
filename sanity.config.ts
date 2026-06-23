@@ -17,7 +17,7 @@ const singletonItem = (
 
 export default defineConfig({
   name: "default",
-  title: "EVARCH.ID CMS",
+  title: "EVARCH.ID Content Editor",
   projectId,
   dataset,
   basePath: "/studio",
@@ -25,17 +25,17 @@ export default defineConfig({
     structureTool({
       structure: (S) =>
         S.list()
-          .title("EVARCH.ID Content")
+          .title("Konten EVARCH.ID")
           .items([
-            singletonItem(S, "Site Settings", "siteSettings", "siteSettings"),
-            singletonItem(S, "Homepage", "homepage", "homepage"),
-            S.documentTypeListItem("project").title("Works / Projects"),
-            singletonItem(S, "Studio / About", "about", "about"),
-            S.documentTypeListItem("expertise").title("Expertise"),
-            singletonItem(S, "STRA Verification", "stra", "stra"),
-            S.documentTypeListItem("regulation").title("Regulation"),
-            singletonItem(S, "Contact & Map", "contact", "contact"),
-            singletonItem(S, "Footer", "footer", "footer"),
+            singletonItem(S, "Pengaturan Website", "siteSettings", "siteSettings"),
+            singletonItem(S, "Halaman Utama", "homepage", "homepage"),
+            S.documentTypeListItem("project").title("Proyek / Works"),
+            singletonItem(S, "Studio / Tentang EVARCH", "about", "about"),
+            S.documentTypeListItem("expertise").title("Keahlian / Expertise"),
+            singletonItem(S, "Verifikasi STRA", "stra", "stra"),
+            S.documentTypeListItem("regulation").title("Regulasi / Pengetahuan"),
+            singletonItem(S, "Kontak dan Peta", "contact", "contact"),
+            singletonItem(S, "Footer Website", "footer", "footer"),
           ]),
     }),
   ],

@@ -86,10 +86,11 @@ export function STRAVerification({
                 <Image
                   src={content.daiLogoUrl}
                   alt="Dewan Arsitek Indonesia logo"
-                  width={1024}
-                  height={595}
-                  sizes="(max-width: 600px) 70vw, 220px"
+                  width={420}
+                  height={244}
+                  sizes="(max-width: 600px) 70vw, 196px"
                   className="dai-logo-image"
+                  quality={82}
                 />
                 <p>{content.note}</p>
               </div>

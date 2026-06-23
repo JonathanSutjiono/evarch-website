@@ -13,7 +13,7 @@ import { StudioIntro } from "@/components/StudioIntro";
 import { WorksGrid } from "@/components/WorksGrid";
 import { safeSanityFetch } from "@/sanity/lib/client";
 import { resolveHomeContent, type CmsHomeResponse } from "@/sanity/lib/fallback";
-import { urlForImage } from "@/sanity/lib/image";
+import { getOptimizedImageUrl } from "@/sanity/lib/image";
 import { homePageQuery, siteSettingsQuery } from "@/sanity/lib/queries";
 
 type CmsSiteSettings = NonNullable<CmsHomeResponse["siteSettings"]>;
@@ -23,8 +23,12 @@ export async function generateMetadata(): Promise<Metadata> {
   const title = settings?.defaultSeoTitle || "EVARCH.ID - Architecture Studio & STRA-Verified Architect";
   const description = settings?.defaultSeoDescription ||
     "EVARCH.ID is an architecture studio for residential and commercial design, planning consultation, and regulation-aware architectural practice in Indonesia.";
-  const ogImage = urlForImage(settings?.defaultOgImage, 1600);
-  const favicon = urlForImage(settings?.favicon, 96);
+  const ogImage = getOptimizedImageUrl(settings?.defaultOgImage, {
+    width: 1200,
+    height: 630,
+    quality: 82,
+  });
+  const favicon = getOptimizedImageUrl(settings?.favicon, { width: 96, quality: 82 });
 
   return {
     title,
@@ -44,6 +48,11 @@ export async function generateMetadata(): Promise<Metadata> {
 export default async function Home() {
   const sanityData = await safeSanityFetch<CmsHomeResponse>(homePageQuery);
   const content = resolveHomeContent(sanityData);
+  const hiddenAnchors = [
+    ...(content.projects.length ? [] : ["#works"]),
+    ...(content.expertise.length ? [] : ["#expertise"]),
+    ...(content.regulations.length ? [] : ["#regulation"]),
+  ];
 
   return (
     <>
@@ -52,9 +61,14 @@ export default async function Home() {
         logoUrl={content.site.logoUrl}
         logoMarkUrl={content.site.logoMarkUrl}
         whatsappUrl={content.site.whatsappUrl}
+        hiddenAnchors={hiddenAnchors}
       />
       <main>
-        <Hero content={content.homepage} whatsappUrl={content.site.whatsappUrl} />
+        <Hero
+          content={content.homepage}
+          whatsappUrl={content.site.whatsappUrl}
+          hasWorks={content.projects.length > 0}
+        />
         <Reveal className="reveal-immediate">
           <StudioIntro content={content.about} />
         </Reveal>
@@ -89,6 +103,7 @@ export default async function Home() {
         content={content.footer}
         companyName={content.site.companyName}
         verificationUrl={content.stra.verificationUrl}
+        hiddenAnchors={hiddenAnchors}
       />
       <FloatingWhatsApp whatsappUrl={content.site.whatsappUrl} />
     </>

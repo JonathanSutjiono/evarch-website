@@ -10,6 +10,7 @@ type NavbarProps = {
   logoUrl?: string | null;
   logoMarkUrl?: string | null;
   whatsappUrl?: string;
+  hiddenAnchors?: string[];
 };
 
 export function Navbar({
@@ -17,9 +18,11 @@ export function Navbar({
   logoUrl = null,
   logoMarkUrl = null,
   whatsappUrl = site.whatsappUrl,
+  hiddenAnchors = [],
 }: NavbarProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const visibleNavigation = navigation.filter((item) => !hiddenAnchors.includes(item.href));
 
   useEffect(() => {
     const updateHeader = () => setIsScrolled(window.scrollY > 32);
@@ -35,12 +38,29 @@ export function Navbar({
       <nav className="nav-shell" aria-label="Primary navigation">
         <Link className="brand-mark" href="#home" onClick={() => setIsOpen(false)}>
           {logoUrl ? (
-            <Image src={logoUrl} alt={`${companyName} logo`} width={180} height={48} className="brand-logo" priority />
+            <Image
+              src={logoUrl}
+              alt={`${companyName} logo`}
+              width={180}
+              height={48}
+              sizes="180px"
+              className="brand-logo"
+              quality={82}
+              priority
+            />
           ) : (
             <>
               <span className="brand-symbol">
                 {logoMarkUrl ? (
-                  <Image src={logoMarkUrl} alt="" width={38} height={38} className="brand-logo-mark" />
+                  <Image
+                    src={logoMarkUrl}
+                    alt=""
+                    width={38}
+                    height={38}
+                    sizes="38px"
+                    className="brand-logo-mark"
+                    quality={80}
+                  />
                 ) : (
                   "EV"
                 )}
@@ -51,7 +71,7 @@ export function Navbar({
         </Link>
 
         <div className="desktop-nav">
-          {navigation.map((item) => (
+          {visibleNavigation.map((item) => (
             <Link key={item.href} href={item.href}>
               {item.label}
             </Link>
@@ -82,7 +102,7 @@ export function Navbar({
 
       {isOpen ? (
         <div id="mobile-navigation" className="mobile-nav">
-          {navigation.map((item) => (
+          {visibleNavigation.map((item) => (
             <Link key={item.href} href={item.href} onClick={() => setIsOpen(false)}>
               {item.label}
             </Link>

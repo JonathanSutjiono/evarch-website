@@ -6,13 +6,17 @@ type FooterProps = {
   content?: ResolvedHomeContent["footer"];
   companyName?: string;
   verificationUrl?: string;
+  hiddenAnchors?: string[];
 };
 
 export function Footer({
   content = fallbackContent.footer,
   companyName = site.name,
   verificationUrl = site.straUrl,
+  hiddenAnchors = [],
 }: FooterProps) {
+  const visibleLinks = content.links.filter((item) => !hiddenAnchors.includes(item.href));
+
   return (
     <footer className="site-footer">
       <div className="site-container footer-grid">
@@ -23,7 +27,7 @@ export function Footer({
           <p>{content.shortDescription}</p>
         </div>
         <div className="footer-links">
-          {content.links.map((item) =>
+          {visibleLinks.map((item) =>
             item.href.startsWith("http") ? (
               <a key={item.href} href={item.href} target="_blank" rel="noopener noreferrer">
                 {item.label}

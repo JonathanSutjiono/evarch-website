@@ -13,6 +13,10 @@ export function ExpertiseGrid({
   title = fallbackContent.homepage.expertiseTitle,
   subtitle = fallbackContent.homepage.expertiseSubtitle,
 }: ExpertiseGridProps) {
+  if (!items.length) {
+    return null;
+  }
+
   return (
     <section id="expertise" className="section-pad">
       <div className="site-container">

@@ -7,11 +7,13 @@ import { fallbackContent, type ResolvedHomeContent } from "@/sanity/lib/fallback
 type HeroProps = {
   content?: ResolvedHomeContent["homepage"];
   whatsappUrl?: string;
+  hasWorks?: boolean;
 };
 
 export function Hero({
   content = fallbackContent.homepage,
   whatsappUrl = site.whatsappUrl,
+  hasWorks = true,
 }: HeroProps) {
   const titleLines = content.heroTitle.split("\n").filter(Boolean);
 
@@ -23,6 +25,7 @@ export function Hero({
         fill
         sizes="100vw"
         className="hero-background-image"
+        quality={82}
         priority
       />
       <div className="hero-background-overlay" aria-hidden="true" />
@@ -36,9 +39,11 @@ export function Hero({
           </h1>
           <p className="hero-lede">{content.heroSubtitle}</p>
           <div className="hero-actions">
-            <Link className="button button-dark" href={content.primaryButtonLink}>
-              {content.primaryButtonLabel}
-            </Link>
+            {hasWorks || content.primaryButtonLink !== "#works" ? (
+              <Link className="button button-dark" href={content.primaryButtonLink}>
+                {content.primaryButtonLabel}
+              </Link>
+            ) : null}
             <a
               className="button button-light"
               href={content.secondaryButtonLink}

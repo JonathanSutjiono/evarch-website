@@ -2611,3 +2611,39 @@ a:focus-visible {
   color: var(--muted);
   line-height: 1.8;
 }
+
+/* Keep the embedded editor familiar while making client guidance easier to scan. */
+.evarch-studio #root [data-ui="Text"] {
+  font-size: 0.875rem;
+  line-height: 1.6;
+}
+
+.evarch-studio #root label[data-ui="Text"],
+.evarch-studio #root fieldset legend [data-ui="Text"] {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  line-height: 1.45;
+}
+
+.evarch-studio #root input:not([type="checkbox"]):not([type="radio"]),
+.evarch-studio #root textarea,
+.evarch-studio #root [contenteditable="true"] {
+  font-size: 0.9375rem;
+  line-height: 1.55;
+}
+
+.evarch-studio #root > [data-ui="Stack"] {
+  row-gap: 1.625rem;
+}
+
+@media (min-width: 1024px) {
+  .evarch-studio #wrapper {
+    width: min(100%, 880px);
+    max-width: 880px;
+    margin-inline: auto;
+  }
+
+  .evarch-studio #root {
+    width: 100%;
+  }
+}

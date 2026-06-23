@@ -7,6 +7,10 @@ type RegulationCardsProps = {
 };
 
 export function RegulationCards({ items = regulations }: RegulationCardsProps) {
+  if (!items.length) {
+    return null;
+  }
+
   return (
     <section id="regulation" className="regulation-section section-pad">
       <div className="site-container">
@@ -20,13 +24,13 @@ export function RegulationCards({ items = regulations }: RegulationCardsProps) {
           {items.map((article, index) => (
             <article className="regulation-card" key={article.title}>
               <div className="article-meta">
-                <span>{article.category}</span>
-                <span>{article.date}</span>
-                <span>{article.readTime}</span>
+                {article.category ? <span>{article.category}</span> : null}
+                {article.date ? <span>{article.date}</span> : null}
+                {article.readTime ? <span>{article.readTime}</span> : null}
               </div>
               <div className="article-copy">
                 <h3>{article.title}</h3>
-                <p>{article.description}</p>
+                {article.description ? <p>{article.description}</p> : null}
               </div>
               <span className="article-arrow" aria-hidden="true">-&gt;</span>
               <span className="article-number">{String(index + 1).padStart(2, "0")}</span>

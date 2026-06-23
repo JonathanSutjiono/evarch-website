@@ -13,23 +13,23 @@ export const homePageQuery = defineQuery(`{
     selectedWorksSubtitle, studioTitle, studioText, expertiseTitle,
     expertiseSubtitle, contactTitle, contactSubtitle
   },
-  "projects": *[_type == "project" && published == true] | order(featured desc, order asc){
+  "projects": *[_type == "project" && coalesce(showOnWebsite, published, true) == true] | order(featured desc, order asc){
     _id, title, "slug": slug.current, category, location, year, scope,
-    status, coverImage, gallery, description, featured, order,
+    status, coverImage, gallery, description, featured, showOnWebsite, order,
     seoTitle, seoDescription
   },
   "about": *[_type == "about"][0]{
     heading, "bodyText": pt::text(body), image, values[]{title, description}
   },
-  "expertise": *[_type == "expertise" && published == true] | order(order asc){
-    _id, title, description, order
+  "expertise": *[_type == "expertise" && coalesce(showOnWebsite, published, true) == true] | order(order asc){
+    _id, title, description, showOnWebsite, order
   },
   "stra": *[_type == "stra"][0]{
     heading, description, badgeText, daiLogo, verificationUrl, buttonLabel, note
   },
-  "regulations": *[_type == "regulation" && published == true] | order(publishedAt desc){
+  "regulations": *[_type == "regulation" && coalesce(showOnWebsite, published, true) == true] | order(publishedAt desc){
     _id, title, "slug": slug.current, category, excerpt, coverImage,
-    readTime, publishedAt, seoTitle, seoDescription
+    readTime, publishedAt, showOnWebsite, seoTitle, seoDescription
   },
   "contact": *[_type == "contact"][0]{
     heading, description, whatsappNumber, whatsappButtonLabel, email,

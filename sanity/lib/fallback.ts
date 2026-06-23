@@ -3,7 +3,7 @@ import { expertise as staticExpertise, type Expertise } from "@/data/expertise";
 import { projects as staticProjects, type Project } from "@/data/projects";
 import { regulations as staticRegulations, type RegulationArticle } from "@/data/regulations";
 import { navigation, site } from "@/data/site";
-import { urlForImage } from "./image";
+import { getOptimizedImageUrl, urlForImage } from "./image";
 
 type ImageValue = SanityImageSource & { alt?: string };
 
@@ -51,13 +51,14 @@ export type CmsHomeResponse = {
     scope?: string[];
     status?: string;
     coverImage?: ImageValue;
+    showOnWebsite?: boolean;
   }>;
   about?: {
     heading?: string;
     bodyText?: string;
     values?: Array<{ title?: string; description?: string }>;
   };
-  expertise?: Array<{ _id: string; title?: string; description?: string }>;
+  expertise?: Array<{ _id: string; title?: string; description?: string; showOnWebsite?: boolean }>;
   stra?: {
     heading?: string;
     description?: string;
@@ -74,6 +75,7 @@ export type CmsHomeResponse = {
     excerpt?: string;
     readTime?: string;
     publishedAt?: string;
+    showOnWebsite?: boolean;
   }>;
   contact?: {
     heading?: string;
@@ -178,38 +180,46 @@ export function resolveHomeContent(data: CmsHomeResponse | null | undefined) {
 
   const settings = data.siteSettings;
   const home = data.homepage;
-  const cmsProjects = data.projects?.length
-    ? data.projects.map((item, index): Project => {
-        const fallback = staticProjects[index % staticProjects.length];
-        return {
-          title: valueOrFallback(item.title, fallback.title),
-          category: valueOrFallback(item.category, fallback.category),
-          location: valueOrFallback(item.location, fallback.location),
-          year: valueOrFallback(item.year, fallback.year),
-          scope: item.scope?.filter(Boolean).join(", ") || fallback.scope,
-          status: valueOrFallback(item.status, fallback.status),
-          image: urlForImage(item.coverImage, 2200) || fallback.image,
-          imageAlt: item.title ? `Architecture project image for ${item.title}.` : fallback.imageAlt,
-        };
-      })
-    : staticProjects;
+  // A successful Sanity response owns repeated content, including intentional empty arrays.
+  const cmsProjects: Project[] = (data.projects ?? [])
+    .filter((item) => Boolean(item.title?.trim()))
+    .flatMap((item) => {
+      const image = getOptimizedImageUrl(item.coverImage, {
+        width: 1280,
+        height: 960,
+        quality: 80,
+      });
 
-  const cmsExpertise: Expertise[] = data.expertise?.length
-    ? data.expertise.map((item, index) => ({
-        title: valueOrFallback(item.title, staticExpertise[index % staticExpertise.length].title),
-        description: valueOrFallback(item.description, staticExpertise[index % staticExpertise.length].description),
-      }))
-    : staticExpertise;
+      return image
+        ? [{
+            title: item.title!.trim(),
+            category: item.category?.trim(),
+            location: item.location?.trim(),
+            year: item.year?.trim(),
+            scope: item.scope?.filter(Boolean).join(", "),
+            status: item.status?.trim(),
+            image,
+            imageAlt: `Architecture project image for ${item.title!.trim()}.`,
+          }]
+        : [];
+    });
 
-  const cmsRegulations: RegulationArticle[] = data.regulations?.length
-    ? data.regulations.map((item, index) => ({
-        category: valueOrFallback(item.category, staticRegulations[index % staticRegulations.length].category),
-        date: item.publishedAt?.slice(0, 4) || staticRegulations[index % staticRegulations.length].date,
-        title: valueOrFallback(item.title, staticRegulations[index % staticRegulations.length].title),
-        description: valueOrFallback(item.excerpt, staticRegulations[index % staticRegulations.length].description),
-        readTime: valueOrFallback(item.readTime, staticRegulations[index % staticRegulations.length].readTime),
-      }))
-    : staticRegulations;
+  const cmsExpertise: Expertise[] = (data.expertise ?? [])
+    .filter((item) => Boolean(item.title?.trim()))
+    .map((item) => ({
+      title: item.title!.trim(),
+      description: item.description?.trim() || "",
+    }));
+
+  const cmsRegulations: RegulationArticle[] = (data.regulations ?? [])
+    .filter((item) => Boolean(item.title?.trim()))
+    .map((item) => ({
+      category: item.category?.trim() || "",
+      date: item.publishedAt?.slice(0, 4) || "",
+      title: item.title!.trim(),
+      description: item.excerpt?.trim() || "",
+      readTime: item.readTime?.trim() || "",
+    }));
 
   const aboutValues = data.about?.values?.filter((item) => item.title || item.description);
   const resolvedWhatsapp = whatsappUrl(data.contact?.whatsappNumber || settings?.whatsappNumber, site.whatsappUrl);
@@ -230,7 +240,11 @@ export function resolveHomeContent(data: CmsHomeResponse | null | undefined) {
       heroEyebrow: valueOrFallback(home?.heroEyebrow, fallbackContent.homepage.heroEyebrow),
       heroTitle: valueOrFallback(home?.heroTitle, fallbackContent.homepage.heroTitle),
       heroSubtitle: valueOrFallback(home?.heroSubtitle, fallbackContent.homepage.heroSubtitle),
-      heroImageUrl: urlForImage(home?.heroImage, 2400) || site.heroImage,
+      heroImageUrl: getOptimizedImageUrl(home?.heroImage, {
+        width: 2000,
+        height: 1125,
+        quality: 82,
+      }) || site.heroImage,
       primaryButtonLabel: valueOrFallback(home?.primaryButtonLabel, fallbackContent.homepage.primaryButtonLabel),
       primaryButtonLink: valueOrFallback(home?.primaryButtonLink, fallbackContent.homepage.primaryButtonLink),
       secondaryButtonLabel: valueOrFallback(home?.secondaryButtonLabel, fallbackContent.homepage.secondaryButtonLabel),
@@ -248,19 +262,23 @@ export function resolveHomeContent(data: CmsHomeResponse | null | undefined) {
     about: {
       title: valueOrFallback(data.about?.heading || home?.studioTitle, fallbackContent.about.title),
       text: valueOrFallback(data.about?.bodyText || home?.studioText, fallbackContent.about.text),
-      values: aboutValues?.length
-        ? aboutValues.map((item, index) => ({
-            title: valueOrFallback(item.title, fallbackValues[index % fallbackValues.length].title),
-            description: valueOrFallback(item.description, fallbackValues[index % fallbackValues.length].description),
-          }))
-        : fallbackValues,
+      values: (aboutValues ?? [])
+        .filter((item) => item.title?.trim())
+        .map((item) => ({
+          title: item.title!.trim(),
+          description: item.description?.trim() || "",
+        })),
     },
     expertise: cmsExpertise,
     stra: {
       heading: valueOrFallback(data.stra?.heading, fallbackContent.stra.heading),
       description: valueOrFallback(data.stra?.description, fallbackContent.stra.description),
       badgeText: valueOrFallback(data.stra?.badgeText, fallbackContent.stra.badgeText),
-      daiLogoUrl: urlForImage(data.stra?.daiLogo, 600) || fallbackContent.stra.daiLogoUrl,
+      daiLogoUrl: getOptimizedImageUrl(data.stra?.daiLogo, {
+        width: 420,
+        quality: 82,
+        fit: "max",
+      }) || fallbackContent.stra.daiLogoUrl,
       verificationUrl: valueOrFallback(data.stra?.verificationUrl, site.straUrl),
       buttonLabel: valueOrFallback(data.stra?.buttonLabel, fallbackContent.stra.buttonLabel),
       note: valueOrFallback(data.stra?.note, fallbackContent.stra.note),

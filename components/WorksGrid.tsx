@@ -18,6 +18,10 @@ export function WorksGrid({
 }: WorksGridProps) {
   const scrollerRef = useRef<HTMLDivElement>(null);
 
+  if (!projects.length) {
+    return null;
+  }
+
   function scrollWorks(direction: "previous" | "next") {
     const scroller = scrollerRef.current;
 
@@ -67,14 +71,16 @@ export function WorksGrid({
           {projects.map((project, index) => (
             <article className="project-card" key={project.title}>
               <div className={`project-image project-image-${index + 1}`}>
-                <Image
-                  src={project.image}
-                  alt={project.imageAlt}
-                  fill
-                  sizes="(max-width: 860px) 86vw, 86vw"
-                  className="project-photo"
-                  priority={index === 0}
-                />
+                {project.image ? (
+                  <Image
+                    src={project.image}
+                    alt={project.imageAlt}
+                    fill
+                    sizes="(max-width: 1302px) 86vw, 1120px"
+                    className="project-photo"
+                    quality={80}
+                  />
+                ) : null}
                 <span>
                   {String(index + 1).padStart(2, "0")} / {String(projects.length).padStart(2, "0")}
                 </span>
@@ -82,22 +88,16 @@ export function WorksGrid({
               <div className="project-content">
                 <div>
                   <h3>{project.title}</h3>
-                  <p className="project-location">{project.location}</p>
+                  {project.location ? <p className="project-location">{project.location}</p> : null}
                 </div>
                 <div className="project-info">
                   <div className="project-meta">
-                    <p>{project.category}</p>
-                    <p>{project.year}</p>
+                    {project.category ? <p>{project.category}</p> : null}
+                    {project.year ? <p>{project.year}</p> : null}
                   </div>
                   <div className="project-detail">
-                    <p>
-                      <span>Scope</span>
-                      {project.scope}
-                    </p>
-                    <p>
-                      <span>Status</span>
-                      {project.status}
-                    </p>
+                    {project.scope ? <p><span>Scope</span>{project.scope}</p> : null}
+                    {project.status ? <p><span>Status</span>{project.status}</p> : null}
                   </div>
                   <a className="project-link" href="#contact" aria-label={`Discuss ${project.title}`}>
                     View Project
