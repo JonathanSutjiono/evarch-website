@@ -1,4 +1,5 @@
 import { site } from "@/data/site";
+import { WhatsAppIcon } from "@/components/icons/WhatsAppIcon";
 import { fallbackContent, type ResolvedHomeContent } from "@/sanity/lib/fallback";
 
 type ContactCTAProps = {
@@ -37,11 +38,12 @@ export function ContactCTA({
         <div className="contact-panel">
           <div className="contact-actions">
             <a
-              className="button button-dark"
+              className="button button-dark button-whatsapp"
               href={content.whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
             >
+              <WhatsAppIcon />
               {content.whatsappButtonLabel}
             </a>
             <a

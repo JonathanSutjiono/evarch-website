@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import { WhatsAppIcon } from "@/components/icons/WhatsAppIcon";
 import { site } from "@/data/site";
 import { fallbackContent, type ResolvedHomeContent } from "@/sanity/lib/fallback";
 
@@ -47,11 +48,12 @@ export function Hero({
               {content.secondaryButtonLabel}
             </a>
             <a
-              className="button button-text"
+              className="button button-text button-whatsapp"
               href={whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
             >
+              <WhatsAppIcon />
               Consult via WhatsApp
             </a>
           </div>
@@ -63,7 +65,7 @@ export function Hero({
           </div>
         </div>
       </div>
-      <a className="hero-scroll-indicator" href="#works" aria-label="Scroll to selected works">
+      <a className="hero-scroll-indicator" href="#studio" aria-label="Scroll to studio">
         <span>Scroll to explore</span>
       </a>
     </section>

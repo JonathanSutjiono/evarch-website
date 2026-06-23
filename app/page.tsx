@@ -55,15 +55,15 @@ export default async function Home() {
       />
       <main>
         <Hero content={content.homepage} whatsappUrl={content.site.whatsappUrl} />
+        <Reveal className="reveal-immediate">
+          <StudioIntro content={content.about} />
+        </Reveal>
         <Reveal>
           <WorksGrid
             projects={content.projects}
             title={content.homepage.selectedWorksTitle}
             subtitle={content.homepage.selectedWorksSubtitle}
           />
-        </Reveal>
-        <Reveal>
-          <StudioIntro content={content.about} />
         </Reveal>
         <Reveal>
           <ExpertiseGrid
@@ -73,13 +73,13 @@ export default async function Home() {
           />
         </Reveal>
         <Reveal>
+          <ProcessSteps />
+        </Reveal>
+        <Reveal>
           <STRAVerification content={content.stra} whatsappUrl={content.site.whatsappUrl} />
         </Reveal>
         <Reveal>
           <RegulationCards items={content.regulations} />
-        </Reveal>
-        <Reveal>
-          <ProcessSteps />
         </Reveal>
         <Reveal>
           <ContactCTA content={content.contact} verificationUrl={content.stra.verificationUrl} />

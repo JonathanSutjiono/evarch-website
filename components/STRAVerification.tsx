@@ -63,7 +63,7 @@ export function STRAVerification({
               {content.buttonLabel}
             </a>
             <a
-              className="button button-light"
+              className="button button-light button-whatsapp"
               href={whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
