@@ -2740,6 +2740,87 @@ a:focus-visible {
   color: var(--card-link-fg-color);
 }
 
+/* Studio-only image context: the native Sanity image input remains directly below. */
+.evarch-studio .client-image-input {
+  display: grid;
+  gap: 14px;
+}
+
+.evarch-studio .client-image-input-preview {
+  display: grid;
+  grid-template-columns: minmax(160px, 0.85fr) minmax(0, 1.15fr);
+  overflow: hidden;
+  border: 1px solid var(--card-border-color);
+  border-radius: 4px;
+  background: var(--card-bg-color);
+}
+
+.evarch-studio .client-image-input-preview img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 132px;
+  object-fit: cover;
+}
+
+.evarch-studio .client-image-input-preview-copy {
+  display: grid;
+  align-content: center;
+  justify-items: start;
+  gap: 8px;
+  padding: 18px 20px;
+}
+
+.evarch-studio .client-image-input-preview-copy strong {
+  color: var(--card-fg-color);
+  font-size: 0.9375rem;
+  line-height: 1.45;
+}
+
+.evarch-studio .client-image-input-preview-copy span,
+.evarch-studio .client-image-input-empty {
+  color: var(--card-muted-fg-color);
+  font-size: 0.875rem;
+  line-height: 1.55;
+}
+
+.evarch-studio .client-image-input-empty {
+  margin: 0;
+  padding: 14px 16px;
+  border: 1px dashed var(--card-border-color);
+  border-radius: 4px;
+}
+
+.evarch-studio .client-image-input-preview-copy button {
+  margin-top: 4px;
+  border: 1px solid var(--card-border-color);
+  border-radius: 3px;
+  background: transparent;
+  color: var(--card-fg-color);
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  line-height: 1.25;
+  padding: 8px 10px;
+}
+
+.evarch-studio .client-image-input-preview-copy button:hover {
+  border-color: var(--card-critical-fg-color);
+  color: var(--card-critical-fg-color);
+}
+
+@media (max-width: 640px) {
+  .evarch-studio .client-image-input-preview {
+    grid-template-columns: 1fr;
+  }
+
+  .evarch-studio .client-image-input-preview img {
+    min-height: 176px;
+    max-height: 240px;
+  }
+}
+
 @media (min-width: 1024px) {
   .evarch-studio #wrapper {
     width: min(100%, 900px);

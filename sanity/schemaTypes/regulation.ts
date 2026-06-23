@@ -1,4 +1,5 @@
 import { defineArrayMember, defineField, defineType } from "sanity";
+import { ClientImageInput } from "../components/ClientImageInput";
 
 export const regulation = defineType({
   name: "regulation",
@@ -14,8 +15,8 @@ export const regulation = defineType({
     defineField({ name: "title", title: "Judul regulasi", description: "Muncul sebagai judul artikel pada section Regulation. Gunakan judul yang jelas dan mudah dipahami, bukan istilah legal yang terlalu panjang.", type: "string", validation: (rule) => rule.required(), fieldset: "main" }),
     defineField({ name: "category", title: "Kategori", description: "Muncul sebagai label artikel. Contoh: STRA, PBG / IMB, atau Professional Practice.", type: "string", fieldset: "main" }),
     defineField({ name: "excerpt", title: "Ringkasan", description: "Muncul di bawah judul pada section Regulation. Ringkas isi artikel dalam 1-2 kalimat.", type: "text", rows: 4, fieldset: "main" }),
-    defineField({ name: "content", title: "Isi artikel", description: "Isi lengkap artikel regulasi atau pengetahuan. Gunakan paragraf pendek, heading jelas, dan gambar hanya bila benar-benar membantu.", type: "array", of: [defineArrayMember({ type: "block" }), defineArrayMember({ type: "image", options: { hotspot: true } })], fieldset: "main" }),
-    defineField({ name: "coverImage", title: "Gambar cover artikel", description: "Opsional. Gunakan gambar arsitektur landscape yang relevan dan tajam, idealnya minimal 1200 px lebar dan di bawah 2-3 MB. Website akan menampilkan versi yang dioptimasi. Hindari foto blur atau gambar situs konstruksi yang tidak rapi.", type: "image", options: { hotspot: true }, fieldset: "main" }),
+    defineField({ name: "content", title: "Isi artikel", description: "Isi lengkap artikel regulasi atau pengetahuan. Gunakan paragraf pendek, heading jelas, dan gambar hanya bila benar-benar membantu.", type: "array", of: [defineArrayMember({ type: "block" }), defineArrayMember({ type: "image", options: { hotspot: true }, components: { input: ClientImageInput } })], fieldset: "main" }),
+    defineField({ name: "coverImage", title: "Gambar cover artikel", description: "Opsional. Disiapkan untuk tampilan visual artikel Regulation bila digunakan. Gunakan gambar arsitektur landscape yang relevan dan tajam, idealnya minimal 1200px lebar. Setelah mengganti atau menghapus gambar, klik Publish.", type: "image", options: { hotspot: true }, components: { input: ClientImageInput }, fieldset: "main" }),
     defineField({ name: "readTime", title: "Estimasi waktu baca", description: "Muncul sebagai metadata artikel. Contoh: 4 min read.", type: "string", fieldset: "main" }),
     defineField({ name: "publishedAt", title: "Tanggal publikasi", description: "Digunakan untuk urutan konten Regulation. Pilih tanggal saat artikel siap ditampilkan.", type: "datetime", fieldset: "publishing" }),
     defineField({ name: "order", title: "Urutan Tampil", description: "Angka kecil tampil lebih dulu. Contoh: 1, 2, 3. Gunakan ini untuk mengatur urutan konten di website.", type: "number", initialValue: 100, fieldset: "publishing" }),

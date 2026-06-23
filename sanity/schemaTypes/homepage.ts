@@ -1,4 +1,5 @@
 import { defineField, defineType } from "sanity";
+import { ClientImageInput } from "../components/ClientImageInput";
 
 export const homepage = defineType({
   name: "homepage",
@@ -37,9 +38,10 @@ export const homepage = defineType({
     defineField({
       name: "heroImage",
       title: "Gambar utama halaman depan",
-      description: "Gambar besar pertama yang terlihat saat website dibuka. Gunakan foto atau render arsitektur horizontal. Rekomendasi: 1920 x 1080 px atau rasio 16:9, ukuran file ideal di bawah 2-3 MB. Hindari gambar blur, terlalu gelap, atau terlalu kecil. Setelah mengedit, klik Publish agar tampil di website.",
+      description: "Gambar ini muncul besar di bagian pertama halaman utama saat website dibuka. Jika ingin mengganti, upload gambar baru lalu klik Publish. Rekomendasi: landscape 16:9, minimal 1920px lebar, tidak blur.",
       type: "image",
       options: { hotspot: true },
+      components: { input: ClientImageInput },
       fieldset: "hero",
     }),
     defineField({

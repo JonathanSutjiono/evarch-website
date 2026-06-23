@@ -1,4 +1,5 @@
 import { defineArrayMember, defineField, defineType } from "sanity";
+import { ClientImageInput } from "../components/ClientImageInput";
 
 export const about = defineType({
   name: "about",
@@ -24,7 +25,7 @@ export const about = defineType({
         defineField({ name: "description", title: "Penjelasan prinsip", description: "Muncul di bawah nama prinsip. Gunakan bahasa singkat, konkret, dan mudah dipahami.", type: "text", rows: 3 }),
       ] })],
     }),
-    defineField({ name: "image", title: "Gambar Studio", description: "Disiapkan sebagai aset visual Studio. Gunakan gambar arsitektur landscape yang bersih; field ini belum menjadi fokus tampilan halaman utama saat ini.", type: "image", options: { hotspot: true }, fieldset: "visual" }),
+    defineField({ name: "image", title: "Gambar Studio", description: "Disiapkan sebagai aset visual Studio. Gunakan gambar arsitektur landscape yang bersih; field ini belum menjadi fokus tampilan halaman utama saat ini. Setelah mengganti atau menghapus gambar, klik Publish.", type: "image", options: { hotspot: true }, components: { input: ClientImageInput }, fieldset: "visual" }),
   ],
   preview: { prepare: () => ({ title: "Studio / Tentang EVARCH" }) },
 });

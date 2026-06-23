@@ -1,4 +1,5 @@
 import { defineField, defineType } from "sanity";
+import { ClientImageInput } from "../components/ClientImageInput";
 
 export const stra = defineType({
   name: "stra",
@@ -17,7 +18,7 @@ export const stra = defineType({
     defineField({ name: "verificationUrl", title: "Link Verifikasi STRA", description: "Tujuan tombol Verifikasi STRA. Gunakan URL direktori resmi Dewan Arsitek Indonesia, bukan link pihak ketiga.", type: "url", fieldset: "verification" }),
     defineField({ name: "buttonLabel", title: "Teks tombol Verifikasi", description: "Teks tombol utama pada section STRA. Contoh: Verify STRA Registration.", type: "string", fieldset: "verification" }),
     defineField({ name: "badgeText", title: "Teks badge STRA", description: "Muncul pada badge bulat STRA. Gunakan teks singkat, contoh: Official Directory Verification.", type: "string", fieldset: "identity" }),
-    defineField({ name: "daiLogo", title: "Logo Dewan Arsitek Indonesia", description: "Logo pendukung pada section STRA. Gunakan hanya aset yang disediakan/diizinkan klien; file horizontal dan ringan sudah cukup karena tampil kecil di website. Tampilan ini untuk referensi direktori dan tidak menyatakan afiliasi EVARCH dengan DAI.", type: "image", options: { hotspot: true }, fieldset: "identity" }),
+    defineField({ name: "daiLogo", title: "Logo Dewan Arsitek Indonesia", description: "Logo ini tampil di bagian Verifikasi STRA sebagai referensi direktori resmi. Gunakan hanya aset yang memang disetujui. Untuk mengganti, upload logo baru. Untuk menghapus, klik Hapus gambar dari konten ini. Setelah selesai, klik Publish. Tampilan ini tidak menyatakan afiliasi EVARCH dengan DAI.", type: "image", options: { hotspot: true }, components: { input: ClientImageInput }, fieldset: "identity" }),
   ],
   preview: { prepare: () => ({ title: "Verifikasi STRA" }) },
 });

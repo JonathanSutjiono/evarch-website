@@ -52,13 +52,25 @@ export function CmsGuide() {
         <h2 id="cms-guide-steps-title">Cara mengelola konten</h2>
         <ol>
           <li>Buka menu konten di sebelah kiri, ubah teks atau gambar, lalu klik Publish.</li>
-          <li>Untuk mengganti gambar, buka field gambar, pilih Remove/Unset asset bila perlu, upload gambar baru, lalu Publish.</li>
+          <li>Untuk mengganti gambar, buka field gambar, pilih gambar baru atau upload file baru, lalu Publish.</li>
           <li>Untuk menyembunyikan proyek, keahlian, tahapan proses, atau regulasi, matikan Tampilkan di Website lalu Publish.</li>
           <li>Untuk menghapus konten dummy permanen, buka dokumen, pilih menu titik tiga, lalu Delete. Konten tersebut tidak akan muncul kembali dari fallback.</li>
           <li>Atur Urutan Tampil dengan angka kecil terlebih dahulu, lalu Publish.</li>
         </ol>
         <p>Untuk seed dari terminal dengan token privat, ikuti panduan di <code>docs/sanity-seeding.md</code>.</p>
         <p>Cek hasilnya di <a href="https://evarch.id" target="_blank" rel="noopener noreferrer">evarch.id</a>.</p>
+      </section>
+
+      <section aria-labelledby="cms-guide-images-title">
+        <h2 id="cms-guide-images-title">Mengganti atau Menghapus Gambar</h2>
+        <ol>
+          <li>Buka dokumen yang ingin diubah, lalu cari field gambar yang sesuai.</li>
+          <li>Preview dengan label Gambar yang sedang digunakan menunjukkan aset yang aktif untuk konten tersebut.</li>
+          <li>Untuk mengganti, gunakan kontrol upload atau pilih aset lain di bawah preview. Atur crop atau hotspot bila diperlukan.</li>
+          <li>Untuk menghapus dari konten ini, klik Hapus gambar dari konten ini. Tindakan ini hanya melepas gambar dari dokumen, bukan menghapus file asli dari library media.</li>
+          <li>Klik Publish agar perubahan tampil di website.</li>
+        </ol>
+        <p>Untuk cover proyek, gunakan gambar landscape minimal 1200px lebar. Untuk Hero, gunakan gambar landscape 16:9 minimal 1920px lebar.</p>
       </section>
     </main>
   );
