@@ -4,6 +4,7 @@ export const stra = defineType({
   name: "stra",
   title: "Verifikasi STRA",
   type: "document",
+  description: "Konten ini muncul pada section Verifikasi STRA di halaman utama. Setelah mengedit, klik Publish agar perubahan tampil di website.",
   fieldsets: [
     { name: "content", title: "Konten Section Verifikasi", options: { collapsible: true } },
     { name: "verification", title: "Link dan Tombol Verifikasi", options: { collapsible: true } },

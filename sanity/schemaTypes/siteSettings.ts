@@ -4,6 +4,7 @@ export const siteSettings = defineType({
   name: "siteSettings",
   title: "Pengaturan Website",
   type: "document",
+  description: "Pengaturan ini dipakai secara global di website, termasuk navigasi, SEO, dan kontak utama. Setelah mengedit, klik Publish agar perubahan tampil di website.",
   fieldsets: [
     { name: "identity", title: "Identitas Website", options: { collapsible: true } },
     { name: "contact", title: "Kontak Utama", options: { collapsible: true } },

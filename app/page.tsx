@@ -87,7 +87,7 @@ export default async function Home() {
           />
         </Reveal>
         <Reveal>
-          <ProcessSteps />
+          <ProcessSteps content={content.process} />
         </Reveal>
         <Reveal>
           <STRAVerification content={content.stra} whatsappUrl={content.site.whatsappUrl} />

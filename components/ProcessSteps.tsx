@@ -1,18 +1,28 @@
-import { processSteps } from "@/data/process";
 import { SectionHeader } from "@/components/SectionHeader";
+import { fallbackContent, type ResolvedHomeContent } from "@/sanity/lib/fallback";
 
-export function ProcessSteps() {
+type ProcessStepsProps = {
+  content?: ResolvedHomeContent["process"];
+};
+
+export function ProcessSteps({
+  content = fallbackContent.process,
+}: ProcessStepsProps) {
+  if (!content.steps.length) {
+    return null;
+  }
+
   return (
     <section className="process-section section-pad">
       <div className="site-container">
         <SectionHeader
-          eyebrow="Process"
-          title="A disciplined sequence from first conversation to coordinated documents."
-          description="Each stage is framed to reduce ambiguity before design coordination begins."
+          eyebrow={content.eyebrow}
+          title={content.title}
+          description={content.description}
         />
 
         <ol className="process-list">
-          {processSteps.map((step, index) => (
+          {content.steps.map((step, index) => (
             <li key={step.title}>
               <div className="process-index">
                 <small>Stage</small>

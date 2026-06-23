@@ -4,6 +4,7 @@ export const about = defineType({
   name: "about",
   title: "Studio / Tentang EVARCH",
   type: "document",
+  description: "Konten ini muncul pada section Studio di halaman utama. Setelah mengedit, klik Publish agar perubahan tampil di website.",
   fieldsets: [
     { name: "content", title: "Konten Section Studio", options: { collapsible: true } },
     { name: "principles", title: "Prinsip Desain", options: { collapsible: true } },

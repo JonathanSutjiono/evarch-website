@@ -18,11 +18,20 @@ export const regulation = defineType({
     defineField({ name: "coverImage", title: "Gambar cover artikel", description: "Opsional. Gunakan gambar arsitektur landscape yang relevan dan tajam, idealnya minimal 1200 px lebar dan di bawah 2-3 MB. Website akan menampilkan versi yang dioptimasi. Hindari foto blur atau gambar situs konstruksi yang tidak rapi.", type: "image", options: { hotspot: true }, fieldset: "main" }),
     defineField({ name: "readTime", title: "Estimasi waktu baca", description: "Muncul sebagai metadata artikel. Contoh: 4 min read.", type: "string", fieldset: "main" }),
     defineField({ name: "publishedAt", title: "Tanggal publikasi", description: "Digunakan untuk urutan konten Regulation. Pilih tanggal saat artikel siap ditampilkan.", type: "datetime", fieldset: "publishing" }),
-    defineField({ name: "showOnWebsite", title: "Tampilkan di Website", description: "Matikan jika artikel ini belum ingin muncul di website tanpa harus menghapus datanya. Klik Publish setelah mengubah pilihan ini.", type: "boolean", initialValue: true, fieldset: "publishing" }),
+    defineField({ name: "order", title: "Urutan Tampil", description: "Angka kecil tampil lebih dulu. Contoh: 1, 2, 3. Gunakan ini untuk mengatur urutan konten di website.", type: "number", initialValue: 100, fieldset: "publishing" }),
+    defineField({ name: "showOnWebsite", title: "Tampilkan di Website", description: "Matikan jika konten ini belum ingin muncul di website. Data tetap tersimpan di CMS.", type: "boolean", initialValue: true, fieldset: "publishing" }),
     defineField({ name: "published", title: "Status tampil lama", description: "Dipertahankan agar data lama tetap kompatibel. Gunakan Tampilkan di Website untuk mengatur visibilitas.", type: "boolean", initialValue: false, fieldset: "publishing", hidden: true }),
     defineField({ name: "slug", title: "Alamat artikel", description: "Dibuat dari Judul regulasi untuk URL halaman. Klik Generate setelah judul diisi.", type: "slug", options: { source: "title", maxLength: 96 }, validation: (rule) => rule.required(), fieldset: "publishing" }),
     defineField({ name: "seoTitle", title: "Judul SEO", description: "Opsional. Judul untuk Google; jika kosong, Judul regulasi akan digunakan.", type: "string", fieldset: "seo" }),
     defineField({ name: "seoDescription", title: "Deskripsi SEO", description: "Opsional. Ringkasan untuk mesin pencari, idealnya 140-160 karakter.", type: "text", rows: 3, fieldset: "seo" }),
   ],
-  preview: { select: { title: "title", subtitle: "category", media: "coverImage" } },
+  orderings: [{ title: "Urutan Tampil", name: "orderAsc", by: [{ field: "order", direction: "asc" }] }],
+  preview: {
+    select: { title: "title", category: "category", showOnWebsite: "showOnWebsite", media: "coverImage" },
+    prepare: ({ title, category, showOnWebsite, media }) => ({
+      title: title || "Regulasi tanpa judul",
+      subtitle: [category, showOnWebsite === false ? "Disembunyikan" : "Tampil di website"].filter(Boolean).join(" · "),
+      media,
+    }),
+  },
 });

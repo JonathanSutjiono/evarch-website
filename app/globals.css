@@ -2614,32 +2614,136 @@ a:focus-visible {
 
 /* Keep the embedded editor familiar while making client guidance easier to scan. */
 .evarch-studio #root [data-ui="Text"] {
-  font-size: 0.875rem;
-  line-height: 1.6;
+  font-size: 0.9375rem;
+  line-height: 1.65;
 }
 
 .evarch-studio #root label[data-ui="Text"],
 .evarch-studio #root fieldset legend [data-ui="Text"] {
-  font-size: 0.9375rem;
+  font-size: 1rem;
   font-weight: 600;
-  line-height: 1.45;
+  line-height: 1.5;
 }
 
 .evarch-studio #root input:not([type="checkbox"]):not([type="radio"]),
 .evarch-studio #root textarea,
 .evarch-studio #root [contenteditable="true"] {
-  font-size: 0.9375rem;
-  line-height: 1.55;
+  font-size: 1rem;
+  line-height: 1.6;
 }
 
 .evarch-studio #root > [data-ui="Stack"] {
   row-gap: 1.625rem;
 }
 
+.evarch-studio .cms-guide {
+  width: min(100% - 48px, 880px);
+  margin: 0 auto;
+  padding: clamp(40px, 7vw, 88px) 0;
+  color: var(--card-fg-color);
+}
+
+.evarch-studio .cms-guide header,
+.evarch-studio .cms-guide section {
+  max-width: 760px;
+}
+
+.evarch-studio .cms-guide h1,
+.evarch-studio .cms-guide h2,
+.evarch-studio .cms-guide p,
+.evarch-studio .cms-guide ol {
+  margin: 0;
+}
+
+.evarch-studio .cms-guide h1 {
+  margin-bottom: 16px;
+  font-size: clamp(2rem, 4vw, 3.25rem);
+  line-height: 1.05;
+}
+
+.evarch-studio .cms-guide h2 {
+  margin-bottom: 10px;
+  font-size: 1rem;
+  line-height: 1.4;
+}
+
+.evarch-studio .cms-guide p,
+.evarch-studio .cms-guide li {
+  color: var(--card-muted-fg-color);
+  font-size: 0.9375rem;
+  line-height: 1.65;
+}
+
+.evarch-studio .cms-guide-kicker {
+  margin-bottom: 12px !important;
+  color: var(--card-link-fg-color) !important;
+  font-size: 0.75rem !important;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.evarch-studio .cms-guide section {
+  margin-top: 40px;
+}
+
+.evarch-studio .cms-guide-seed {
+  border: 1px solid var(--card-border-color);
+  border-radius: 4px;
+  padding: clamp(20px, 3vw, 32px);
+}
+
+.evarch-studio .cms-guide button {
+  margin-top: 20px;
+  border: 0;
+  border-radius: 3px;
+  background: var(--card-button-primary-bg-color);
+  color: var(--card-button-primary-fg-color);
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.875rem;
+  font-weight: 600;
+  line-height: 1.25;
+  padding: 11px 16px;
+}
+
+.evarch-studio .cms-guide button:hover:not(:disabled) {
+  background: var(--card-button-primary-hovered-bg-color);
+}
+
+.evarch-studio .cms-guide button:disabled {
+  cursor: wait;
+  opacity: 0.65;
+}
+
+.evarch-studio .cms-guide .is-success,
+.evarch-studio .cms-guide .is-error {
+  margin-top: 16px;
+}
+
+.evarch-studio .cms-guide .is-success {
+  color: var(--card-positive-fg-color);
+}
+
+.evarch-studio .cms-guide .is-error {
+  color: var(--card-critical-fg-color);
+}
+
+.evarch-studio .cms-guide ol {
+  display: grid;
+  gap: 10px;
+  margin-top: 16px;
+  padding-left: 22px;
+}
+
+.evarch-studio .cms-guide a {
+  color: var(--card-link-fg-color);
+}
+
 @media (min-width: 1024px) {
   .evarch-studio #wrapper {
-    width: min(100%, 880px);
-    max-width: 880px;
+    width: min(100%, 900px);
+    max-width: 900px;
     margin-inline: auto;
   }
 

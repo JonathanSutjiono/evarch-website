@@ -13,25 +13,31 @@ export const homePageQuery = defineQuery(`{
     selectedWorksSubtitle, studioTitle, studioText, expertiseTitle,
     expertiseSubtitle, contactTitle, contactSubtitle
   },
-  "projects": *[_type == "project" && coalesce(showOnWebsite, published, true) == true] | order(featured desc, order asc){
+  "projects": *[_type == "project" && showOnWebsite != false] | order(coalesce(order, 1000) asc, featured desc, _createdAt asc){
     _id, title, "slug": slug.current, category, location, year, scope,
     status, coverImage, gallery, description, featured, showOnWebsite, order,
     seoTitle, seoDescription
   },
-  "about": *[_type == "about"][0]{
+  "about": coalesce(*[_id == "studioAbout"][0], *[_id == "about"][0]){
     heading, "bodyText": pt::text(body), image, values[]{title, description}
   },
-  "expertise": *[_type == "expertise" && coalesce(showOnWebsite, published, true) == true] | order(order asc){
+  "expertise": *[_type == "expertise" && showOnWebsite != false] | order(coalesce(order, 1000) asc, _createdAt asc){
     _id, title, description, showOnWebsite, order
   },
-  "stra": *[_type == "stra"][0]{
+  "process": coalesce(*[_id == "processContent"][0], *[_id == "process"][0]){
+    eyebrow, heading, description
+  },
+  "processSteps": *[_type == "processStep" && showOnWebsite != false] | order(coalesce(order, 1000) asc, _createdAt asc){
+    _id, title, description, showOnWebsite, order
+  },
+  "stra": coalesce(*[_id == "straVerification"][0], *[_id == "stra"][0]){
     heading, description, badgeText, daiLogo, verificationUrl, buttonLabel, note
   },
-  "regulations": *[_type == "regulation" && coalesce(showOnWebsite, published, true) == true] | order(publishedAt desc){
+  "regulations": *[_type == "regulation" && showOnWebsite != false] | order(coalesce(order, 1000) asc, publishedAt desc, _createdAt asc){
     _id, title, "slug": slug.current, category, excerpt, coverImage,
-    readTime, publishedAt, showOnWebsite, seoTitle, seoDescription
+    readTime, publishedAt, showOnWebsite, order, seoTitle, seoDescription
   },
-  "contact": *[_type == "contact"][0]{
+  "contact": coalesce(*[_id == "contactMap"][0], *[_id == "contact"][0]){
     heading, description, whatsappNumber, whatsappButtonLabel, email,
     address, googleMapsUrl, googleMapsEmbedUrl, latitude, longitude,
     instagramUrl, linkedinUrl

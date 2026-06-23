@@ -1,5 +1,6 @@
 import type { SanityImageSource } from "@sanity/image-url";
 import { expertise as staticExpertise, type Expertise } from "@/data/expertise";
+import { processSteps, type ProcessStep } from "@/data/process";
 import { projects as staticProjects, type Project } from "@/data/projects";
 import { regulations as staticRegulations, type RegulationArticle } from "@/data/regulations";
 import { navigation, site } from "@/data/site";
@@ -58,6 +59,12 @@ export type CmsHomeResponse = {
     bodyText?: string;
     values?: Array<{ title?: string; description?: string }>;
   };
+  process?: {
+    eyebrow?: string;
+    heading?: string;
+    description?: string;
+  };
+  processSteps?: Array<{ _id: string; title?: string; description?: string; showOnWebsite?: boolean; order?: number }>;
   expertise?: Array<{ _id: string; title?: string; description?: string; showOnWebsite?: boolean }>;
   stra?: {
     heading?: string;
@@ -136,6 +143,12 @@ export const fallbackContent = {
   },
   projects: staticProjects,
   about: { title: "Studio", text: "EVARCH.ID works across residential, commercial, and interior architecture with a focus on proportion, context, buildability, and compliance.", values: fallbackValues },
+  process: {
+    eyebrow: "Process",
+    title: "A disciplined sequence from first conversation to coordinated documents.",
+    description: "Each stage is framed to reduce ambiguity before design coordination begins.",
+    steps: processSteps,
+  },
   expertise: staticExpertise,
   stra: {
     heading: "STRA Verification",
@@ -172,7 +185,7 @@ function valueOrFallback(value: string | null | undefined, fallback: string) {
 
 function whatsappUrl(number: string | undefined, fallback: string) {
   const digits = number?.replace(/\D/g, "");
-  return digits ? `https://wa.me/${digits}` : fallback;
+  return digits && digits.length >= 10 ? `https://wa.me/${digits}` : fallback;
 }
 
 export function resolveHomeContent(data: CmsHomeResponse | null | undefined) {
@@ -188,7 +201,7 @@ export function resolveHomeContent(data: CmsHomeResponse | null | undefined) {
         width: 1280,
         height: 960,
         quality: 80,
-      });
+      }) || staticProjects.find((project) => project.title === item.title?.trim())?.image;
 
       return image
         ? [{
@@ -220,6 +233,11 @@ export function resolveHomeContent(data: CmsHomeResponse | null | undefined) {
       description: item.excerpt?.trim() || "",
       readTime: item.readTime?.trim() || "",
     }));
+
+  const cmsProcessSteps: ProcessStep[] | undefined = data.processSteps?.map((step) => ({
+    title: step.title?.trim() || "",
+    description: step.description?.trim() || "",
+  })).filter((step) => Boolean(step.title));
 
   const aboutValues = data.about?.values?.filter((item) => item.title || item.description);
   const resolvedWhatsapp = whatsappUrl(data.contact?.whatsappNumber || settings?.whatsappNumber, site.whatsappUrl);
@@ -268,6 +286,12 @@ export function resolveHomeContent(data: CmsHomeResponse | null | undefined) {
           title: item.title!.trim(),
           description: item.description?.trim() || "",
         })),
+    },
+    process: {
+      eyebrow: valueOrFallback(data.process?.eyebrow, fallbackContent.process.eyebrow),
+      title: valueOrFallback(data.process?.heading, fallbackContent.process.title),
+      description: valueOrFallback(data.process?.description, fallbackContent.process.description),
+      steps: cmsProcessSteps ?? fallbackContent.process.steps,
     },
     expertise: cmsExpertise,
     stra: {

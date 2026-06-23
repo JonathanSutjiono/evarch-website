@@ -3,6 +3,8 @@ import { contact } from "./contact";
 import { expertise } from "./expertise";
 import { footer } from "./footer";
 import { homepage } from "./homepage";
+import { process } from "./process";
+import { processStep } from "./processStep";
 import { project } from "./project";
 import { regulation } from "./regulation";
 import { siteSettings } from "./siteSettings";
@@ -11,6 +13,8 @@ import { stra } from "./stra";
 export const schemaTypes = [
   siteSettings,
   homepage,
+  process,
+  processStep,
   project,
   about,
   expertise,

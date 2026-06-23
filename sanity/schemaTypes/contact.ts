@@ -4,6 +4,7 @@ export const contact = defineType({
   name: "contact",
   title: "Kontak dan Peta",
   type: "document",
+  description: "Konten ini muncul pada section Contact di bagian akhir halaman utama. Setelah mengedit, klik Publish agar perubahan tampil di website.",
   fieldsets: [
     { name: "content", title: "Konten Section Contact", options: { collapsible: true } },
     { name: "contact", title: "Kontak Utama", options: { collapsible: true } },
