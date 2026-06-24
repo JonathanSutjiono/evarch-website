@@ -7,14 +7,14 @@ export const regulation = defineType({
   type: "document",
   description: "Konten ini muncul pada section Regulation. Gunakan Tampilkan di Website untuk menyembunyikan artikel draft atau contoh tanpa menghapusnya.",
   fieldsets: [
-    { name: "main", title: "Konten Regulasi", options: { collapsible: true } },
-    { name: "publishing", title: "Publikasi", options: { collapsible: true, collapsed: true } },
-    { name: "seo", title: "SEO (opsional)", options: { collapsible: true, collapsed: true } },
+    { name: "main", title: "Konten Regulasi yang Tampil di Website", options: { collapsible: true } },
+    { name: "publishing", title: "Pengaturan Tampilan dan Urutan", options: { collapsible: true, collapsed: true } },
+    { name: "seo", title: "Pengaturan SEO dan Share Link", options: { collapsible: true, collapsed: true } },
   ],
   fields: [
-    defineField({ name: "title", title: "Judul regulasi", description: "Muncul sebagai judul artikel pada section Regulation. Gunakan judul yang jelas dan mudah dipahami, bukan istilah legal yang terlalu panjang.", type: "string", validation: (rule) => rule.required(), fieldset: "main" }),
-    defineField({ name: "category", title: "Kategori", description: "Muncul sebagai label artikel. Contoh: STRA, PBG / IMB, atau Professional Practice.", type: "string", fieldset: "main" }),
-    defineField({ name: "excerpt", title: "Ringkasan", description: "Muncul di bawah judul pada section Regulation. Ringkas isi artikel dalam 1-2 kalimat.", type: "text", rows: 4, fieldset: "main" }),
+    defineField({ name: "title", title: "Judul regulasi", description: "Tampil sebagai judul artikel pada section Regulation. Gunakan judul yang jelas dan mudah dipahami, bukan istilah legal yang terlalu panjang. Klik Publish setelah mengubahnya.", type: "string", validation: (rule) => rule.required(), fieldset: "main" }),
+    defineField({ name: "category", title: "Kategori", description: "Tampil sebagai label artikel. Contoh: STRA, PBG / IMB, atau Professional Practice.", type: "string", fieldset: "main" }),
+    defineField({ name: "excerpt", title: "Ringkasan", description: "Tampil di bawah judul pada section Regulation. Ringkas isi artikel dalam 1-2 kalimat, lalu klik Publish.", type: "text", rows: 4, fieldset: "main" }),
     defineField({ name: "content", title: "Isi artikel", description: "Isi lengkap artikel regulasi atau pengetahuan. Gunakan paragraf pendek, heading jelas, dan gambar hanya bila benar-benar membantu.", type: "array", of: [defineArrayMember({ type: "block" }), defineArrayMember({ type: "image", options: { hotspot: true }, components: { input: ClientImageInput } })], fieldset: "main" }),
     defineField({ name: "coverImage", title: "Gambar cover artikel", description: "Opsional. Disiapkan untuk tampilan visual artikel Regulation bila digunakan. Gunakan gambar arsitektur landscape yang relevan dan tajam, idealnya minimal 1200px lebar. Setelah mengganti atau menghapus gambar, klik Publish.", type: "image", options: { hotspot: true }, components: { input: ClientImageInput }, fieldset: "main" }),
     defineField({ name: "readTime", title: "Estimasi waktu baca", description: "Muncul sebagai metadata artikel. Contoh: 4 min read.", type: "string", fieldset: "main" }),
@@ -28,10 +28,10 @@ export const regulation = defineType({
   ],
   orderings: [{ title: "Urutan Tampil", name: "orderAsc", by: [{ field: "order", direction: "asc" }] }],
   preview: {
-    select: { title: "title", category: "category", showOnWebsite: "showOnWebsite", media: "coverImage" },
-    prepare: ({ title, category, showOnWebsite, media }) => ({
+    select: { title: "title", category: "category", order: "order", showOnWebsite: "showOnWebsite", media: "coverImage" },
+    prepare: ({ title, category, order, showOnWebsite, media }) => ({
       title: title || "Regulasi tanpa judul",
-      subtitle: [category, showOnWebsite === false ? "Disembunyikan" : "Tampil di website"].filter(Boolean).join(" · "),
+      subtitle: [category, typeof order === "number" ? `Urutan ${order}` : null, showOnWebsite === false ? "Disembunyikan" : "Tampil di website"].filter(Boolean).join(" · "),
       media,
     }),
   },

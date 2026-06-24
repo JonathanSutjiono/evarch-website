@@ -4,10 +4,10 @@ export const footer = defineType({
   name: "footer",
   title: "Footer Website",
   type: "document",
-  description: "Konten ini muncul di bagian paling bawah website. Setelah mengedit, klik Publish agar perubahan tampil di website.",
+  description: "Konten ini tampil di bagian paling bawah website sebagai penutup dan navigasi ringkas. Setelah mengedit, klik Publish agar perubahan tampil di website.",
   fields: [
-    defineField({ name: "shortDescription", title: "Teks footer", description: "Muncul di bagian bawah website, di bawah nama EVARCH. Gunakan deskripsi studio yang sangat singkat, 1-2 baris.", type: "text", rows: 3 }),
-    defineField({ name: "copyrightText", title: "Teks copyright", description: "Muncul paling bawah pada footer. Contoh: Copyright 2026 EVARCH.ID.", type: "string" }),
+    defineField({ name: "shortDescription", title: "Teks footer", description: "Tampil di bagian bawah website, di bawah nama EVARCH. Gunakan deskripsi studio yang sangat singkat, 1-2 baris, lalu klik Publish.", type: "text", rows: 3 }),
+    defineField({ name: "copyrightText", title: "Teks copyright", description: "Tampil paling bawah pada footer. Contoh: Copyright 2026 EVARCH.ID. Klik Publish setelah mengubahnya.", type: "string" }),
     defineField({
       name: "links",
       title: "Link footer",

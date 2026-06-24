@@ -29,7 +29,7 @@ export function WorksGrid({
       return;
     }
 
-    const distance = scroller.clientWidth * 0.86;
+    const distance = scroller.clientWidth * 0.82;
 
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
@@ -48,7 +48,7 @@ export function WorksGrid({
         </div>
 
         <SectionHeader
-          eyebrow="Selected Works"
+          eyebrow="Portfolio"
           title={title}
           description={subtitle}
         />
@@ -56,7 +56,7 @@ export function WorksGrid({
 
       <div className="works-showcase" aria-label="Selected works project carousel">
         <div className="works-showcase-top site-container">
-          <p>Scroll / Drag to explore works</p>
+          <p>Explore the project selection</p>
           <div className="works-controls" aria-label="Project navigation controls">
             <button type="button" onClick={() => scrollWorks("previous")} aria-label="Previous project">
               Prev
@@ -76,7 +76,7 @@ export function WorksGrid({
                     src={project.image}
                     alt={project.imageAlt}
                     fill
-                    sizes="(max-width: 1302px) 86vw, 1120px"
+                    sizes="(max-width: 860px) 86vw, (max-width: 1302px) 82vw, 1060px"
                     className="project-photo"
                     quality={80}
                   />

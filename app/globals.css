@@ -791,7 +791,7 @@ a:focus-visible {
 
 .works-showcase {
   display: grid;
-  gap: 18px;
+  gap: 16px;
 }
 
 .works-showcase-top {
@@ -819,13 +819,15 @@ a:focus-visible {
 
 .works-controls {
   display: flex;
-  gap: 8px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: rgba(252, 250, 246, 0.5);
 }
 
 .works-controls button {
-  min-width: 74px;
+  min-width: 76px;
   min-height: 42px;
-  border: 1px solid var(--line);
+  border: 0;
   background: transparent;
   color: var(--charcoal);
   cursor: pointer;
@@ -837,6 +839,10 @@ a:focus-visible {
     border-color 180ms ease,
     color 180ms ease,
     transform 180ms ease;
+}
+
+.works-controls button + button {
+  border-left: 1px solid var(--line);
 }
 
 .works-controls button:hover {
@@ -871,7 +877,7 @@ a:focus-visible {
 }
 
 .project-card {
-  flex: 0 0 min(86vw, 1120px);
+  flex: 0 0 min(82vw, 1060px);
   min-width: 0;
   scroll-snap-align: start;
   scroll-snap-stop: always;
@@ -918,12 +924,12 @@ a:focus-visible {
     linear-gradient(90deg, rgba(255, 253, 248, 0.16) 1px, transparent 1px),
     linear-gradient(0deg, rgba(255, 253, 248, 0.13) 1px, transparent 1px);
   background-size: 72px 72px;
-  opacity: 0.42;
+  opacity: 0.26;
   transition: opacity 260ms ease;
 }
 
 .project-card:hover .project-image::after {
-  opacity: 0.18;
+  opacity: 0.1;
 }
 
 .project-photo {
@@ -1425,7 +1431,6 @@ a:focus-visible {
 
 .stra-intro {
   display: flex;
-  min-height: 100%;
   flex-direction: column;
 }
 
@@ -1444,15 +1449,16 @@ a:focus-visible {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 0;
-  margin-top: auto;
+  margin-top: clamp(30px, 4vw, 48px);
   border-block: 1px solid var(--line);
+  background: rgba(252, 250, 246, 0.34);
 }
 
 .stra-intro-meta div {
   display: grid;
   align-content: start;
   gap: 8px;
-  padding: 18px 20px 18px 0;
+  padding: 20px;
 }
 
 .stra-intro-meta div + div {
@@ -1477,11 +1483,11 @@ a:focus-visible {
 
 .stra-panel {
   display: grid;
-  gap: 24px;
+  gap: 20px;
   border: 1px solid var(--line);
-  background: rgba(255, 253, 248, 0.56);
-  box-shadow: 0 18px 40px rgba(28, 28, 26, 0.035);
-  padding: clamp(26px, 4vw, 42px);
+  background: rgba(255, 253, 248, 0.46);
+  box-shadow: 0 14px 30px rgba(28, 28, 26, 0.025);
+  padding: clamp(24px, 3vw, 34px);
 }
 
 .stra-seal-wrap {
@@ -1489,31 +1495,31 @@ a:focus-visible {
   place-items: center start;
   border-top: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
-  padding-top: 28px;
-  padding-bottom: 28px;
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
 
 .stra-identity-row {
   display: grid;
-  grid-template-columns: auto minmax(0, 1fr);
-  gap: 20px;
+  grid-template-columns: minmax(142px, 0.72fr) minmax(0, 1fr);
+  gap: 18px;
   align-items: center;
   width: 100%;
 }
 
 .dai-logo-card {
   display: grid;
-  gap: 14px;
+  gap: 12px;
   place-items: center;
   min-width: 0;
   border-left: 1px solid var(--line);
-  padding: 12px 0 12px 24px;
+  padding: 12px 0 12px 20px;
   text-align: center;
 }
 
 .dai-logo-image {
   width: 100%;
-  max-width: 196px;
+  max-width: 156px;
   height: auto;
   object-fit: contain;
 }
@@ -1521,17 +1527,16 @@ a:focus-visible {
 .dai-logo-card p {
   margin: 0;
   color: var(--muted);
-  font-size: 0.78rem;
-  font-weight: 700;
-  letter-spacing: 0.06em;
+  font-size: 0.84rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
   line-height: 1.55;
-  text-transform: uppercase;
 }
 
 .stra-seal {
   position: relative;
   display: grid;
-  width: clamp(178px, 20vw, 230px);
+  width: clamp(142px, 15vw, 180px);
   aspect-ratio: 1;
   place-items: center;
   justify-self: start;
@@ -1549,8 +1554,7 @@ a:focus-visible {
 }
 
 .stra-panel:hover .stra-seal {
-  border-color: rgba(169, 104, 76, 0.9);
-  transform: rotate(-1deg) translateY(-2px);
+  border-color: rgba(169, 104, 76, 0.78);
 }
 
 .stra-seal::before {
@@ -1559,19 +1563,19 @@ a:focus-visible {
   background: linear-gradient(115deg, transparent 38%, rgba(255, 253, 248, 0.7), transparent 62%);
   content: "";
   transform: translateX(-80%) rotate(18deg);
-  animation: seal-sweep 5.8s ease-in-out infinite 1.4s;
+  animation: none;
 }
 
 .stra-seal span {
   align-self: end;
   font-family: var(--font-geist-mono);
-  font-size: clamp(2.45rem, 5vw, 4rem);
+  font-size: clamp(2.1rem, 3.8vw, 3.1rem);
   letter-spacing: 0.06em;
 }
 
 .stra-seal strong {
-  max-width: 130px;
-  font-size: 0.8rem;
+  max-width: 108px;
+  font-size: 0.75rem;
   letter-spacing: 0.1em;
   line-height: 1.45;
   text-transform: uppercase;
@@ -1579,9 +1583,9 @@ a:focus-visible {
 
 .stra-seal small {
   align-self: start;
-  max-width: 120px;
+  max-width: 100px;
   color: var(--muted);
-  font-size: 0.75rem;
+  font-size: 0.68rem;
   font-weight: 700;
   letter-spacing: 0.08em;
   line-height: 1.4;
@@ -1598,12 +1602,12 @@ a:focus-visible {
 .stra-badge {
   display: flex;
   align-items: flex-start;
-  gap: 18px;
+  gap: 14px;
 }
 
 .shield-icon {
-  width: 42px;
-  height: 42px;
+  width: 36px;
+  height: 36px;
   flex: 0 0 auto;
   fill: none;
   stroke: var(--clay);
@@ -1619,7 +1623,7 @@ a:focus-visible {
 
 .stra-badge strong {
   color: var(--charcoal);
-  font-size: 1.2rem;
+  font-size: 1.08rem;
   font-weight: 600;
   line-height: 1.25;
 }
@@ -1635,7 +1639,7 @@ a:focus-visible {
   border-top: 1px solid var(--line);
   padding-top: 14px;
   color: var(--muted);
-  font-size: 0.82rem;
+  font-size: 0.875rem;
   line-height: 1.65;
 }
 
@@ -2846,31 +2850,180 @@ a:focus-visible {
 }
 
 /* Keep the embedded editor familiar while making client guidance easier to scan. */
+.evarch-studio {
+  --evarch-studio-ink: #292721;
+  --evarch-studio-muted: #625f57;
+  --evarch-studio-line: #d4cec3;
+  --evarch-studio-panel: rgba(255, 253, 249, 0.76);
+  --evarch-studio-accent: #755e4e;
+  background: #f5f1ea;
+  color: var(--evarch-studio-ink);
+}
+
 .evarch-studio #root [data-ui="Text"] {
-  font-size: 0.9375rem;
-  line-height: 1.65;
+  color: var(--evarch-studio-ink);
+  font-size: 1rem;
+  line-height: 1.64;
+  opacity: 1;
 }
 
 .evarch-studio #root label[data-ui="Text"],
 .evarch-studio #root fieldset legend [data-ui="Text"] {
+  color: var(--evarch-studio-ink);
   font-size: 1rem;
-  font-weight: 600;
-  line-height: 1.5;
+  font-weight: 700;
+  line-height: 1.45;
+}
+
+.evarch-studio #root p[data-ui="Text"] {
+  color: var(--evarch-studio-muted);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  line-height: 1.68;
 }
 
 .evarch-studio #root input:not([type="checkbox"]):not([type="radio"]),
 .evarch-studio #root textarea,
 .evarch-studio #root [contenteditable="true"] {
+  color: var(--evarch-studio-ink);
   font-size: 1rem;
   line-height: 1.6;
 }
 
+.evarch-studio #root [contenteditable="true"] {
+  min-height: 9rem;
+  padding: 14px 16px;
+}
+
+.evarch-studio #root input:not([type="checkbox"]):not([type="radio"]):not([type="hidden"]) {
+  min-height: 46px;
+  padding-inline: 14px;
+}
+
+.evarch-studio #root textarea {
+  min-height: 136px;
+  padding: 14px 16px;
+}
+
+.evarch-studio #root input:not([type="checkbox"]):not([type="radio"]):not([type="hidden"]),
+.evarch-studio #root textarea {
+  border-color: var(--evarch-studio-line);
+  border-radius: 5px;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.58);
+}
+
+.evarch-studio #root [data-ui="TextInput"]:focus-within,
+.evarch-studio #root [data-ui="TextArea"]:focus-within {
+  outline: 2px solid color-mix(in srgb, var(--evarch-studio-accent) 66%, transparent);
+  outline-offset: 2px;
+}
+
+.evarch-studio #root input:focus-visible,
+.evarch-studio #root textarea:focus-visible,
+.evarch-studio #root [contenteditable="true"]:focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--evarch-studio-accent) 66%, transparent);
+  outline-offset: 2px;
+}
+
+.evarch-studio #root h1 {
+  color: var(--evarch-studio-ink);
+  font-size: clamp(1.85rem, 3vw, 2.55rem);
+  font-weight: 700;
+  letter-spacing: 0;
+  line-height: 1.14;
+}
+
+.evarch-studio #root fieldset {
+  margin-block: 20px;
+  border: 1px solid var(--evarch-studio-line);
+  border-radius: 7px;
+  background: var(--evarch-studio-panel);
+  box-shadow: 0 12px 28px rgba(50, 45, 38, 0.035);
+  padding: 18px 22px 24px;
+}
+
+.evarch-studio #root fieldset > legend {
+  color: var(--evarch-studio-ink);
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.45;
+  padding-inline: 4px;
+}
+
+.evarch-studio #root fieldset > legend::before {
+  display: inline-block;
+  width: 5px;
+  height: 1.15em;
+  margin-right: 10px;
+  vertical-align: -0.18em;
+  background: var(--evarch-studio-accent);
+  content: "";
+}
+
+.evarch-studio #root [data-ui="TreeItem__box"] {
+  min-height: 48px;
+  border-radius: 4px;
+}
+
+.evarch-studio #root [data-ui="TreeItem"][data-selected] [data-ui="TreeItem__box"] {
+  background: color-mix(in srgb, var(--card-link-fg-color) 10%, transparent);
+  box-shadow: inset 3px 0 var(--card-link-fg-color);
+}
+
+.evarch-studio #root [data-ui="TreeItem"] [data-ui="Text"],
+.evarch-studio #root [data-ui="MenuItem"] [data-ui="Text"] {
+  font-size: 0.96875rem;
+  font-weight: 650;
+  line-height: 1.45;
+}
+
+.evarch-studio #root [data-ui="MenuItem"] {
+  min-height: 46px;
+}
+
+.evarch-studio #root button[data-ui="Button"] [data-ui="Text"] {
+  font-size: 0.9375rem;
+  font-weight: 700;
+}
+
+.evarch-studio #root button[data-ui="Button"] {
+  min-height: 42px;
+}
+
+.evarch-studio #root [data-ui="TreeItem"][data-selected] [data-ui="Text"],
+.evarch-studio #root [data-ui="MenuItem"][data-selected] [data-ui="Text"] {
+  color: var(--evarch-studio-ink);
+  font-weight: 700;
+}
+
 .evarch-studio #root > [data-ui="Stack"] {
-  row-gap: 1.625rem;
+  row-gap: 2rem;
+}
+
+.evarch-studio-logo {
+  display: grid;
+  gap: 1px;
+  min-width: 148px;
+  color: var(--evarch-studio-ink);
+  line-height: 1;
+}
+
+.evarch-studio-logo span {
+  font-size: 0.98rem;
+  font-weight: 800;
+  letter-spacing: 0.045em;
+}
+
+.evarch-studio-logo small {
+  color: var(--evarch-studio-muted);
+  font-size: 0.67rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
 }
 
 .evarch-studio .cms-guide {
-  width: min(100% - 48px, 880px);
+  width: min(100% - 48px, 980px);
   margin: 0 auto;
   padding: clamp(40px, 7vw, 88px) 0;
   color: var(--card-fg-color);
@@ -2878,7 +3031,7 @@ a:focus-visible {
 
 .evarch-studio .cms-guide header,
 .evarch-studio .cms-guide section {
-  max-width: 760px;
+  max-width: 880px;
 }
 
 .evarch-studio .cms-guide h1,
@@ -2896,15 +3049,18 @@ a:focus-visible {
 
 .evarch-studio .cms-guide h2 {
   margin-bottom: 10px;
-  font-size: 1rem;
+  color: var(--evarch-studio-ink);
+  font-size: 1.18rem;
+  font-weight: 700;
   line-height: 1.4;
 }
 
 .evarch-studio .cms-guide p,
 .evarch-studio .cms-guide li {
-  color: var(--card-muted-fg-color);
-  font-size: 0.9375rem;
-  line-height: 1.65;
+  color: var(--evarch-studio-muted);
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.7;
 }
 
 .evarch-studio .cms-guide-kicker {
@@ -2920,9 +3076,63 @@ a:focus-visible {
   margin-top: 40px;
 }
 
+.evarch-studio .cms-guide-workflow {
+  display: grid;
+  grid-template-columns: minmax(0, 0.75fr) minmax(0, 1.25fr);
+  gap: clamp(24px, 4vw, 56px);
+  align-items: start;
+  border: 1px solid var(--evarch-studio-line);
+  border-radius: 7px;
+  background: var(--evarch-studio-panel);
+  box-shadow: 0 14px 32px rgba(50, 45, 38, 0.045);
+  padding: clamp(24px, 4vw, 40px);
+}
+
+.evarch-studio .cms-guide-workflow .cms-guide-kicker {
+  color: var(--evarch-studio-accent) !important;
+}
+
+.evarch-studio .cms-guide-workflow h2 {
+  margin-bottom: 0;
+  font-size: clamp(1.4rem, 2vw, 1.75rem);
+  line-height: 1.2;
+}
+
+.evarch-studio .cms-guide-workflow ol {
+  gap: 14px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.evarch-studio .cms-guide-workflow li {
+  display: grid;
+  gap: 3px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid color-mix(in srgb, var(--evarch-studio-line) 74%, transparent);
+}
+
+.evarch-studio .cms-guide-workflow li:last-child {
+  padding-bottom: 0;
+  border-bottom: 0;
+}
+
+.evarch-studio .cms-guide-workflow strong {
+  color: var(--evarch-studio-ink);
+  font-size: 0.9375rem;
+  font-weight: 750;
+}
+
+.evarch-studio .cms-guide-workflow span {
+  color: var(--evarch-studio-muted);
+  font-size: 0.9375rem;
+  line-height: 1.58;
+}
+
 .evarch-studio .cms-guide-seed {
-  border: 1px solid var(--card-border-color);
-  border-radius: 4px;
+  border: 1px solid var(--evarch-studio-line);
+  border-radius: 7px;
+  background: var(--evarch-studio-panel);
   padding: clamp(20px, 3vw, 32px);
 }
 
@@ -2934,10 +3144,10 @@ a:focus-visible {
   color: var(--card-button-primary-fg-color);
   cursor: pointer;
   font: inherit;
-  font-size: 0.875rem;
+  font-size: 0.9375rem;
   font-weight: 600;
   line-height: 1.25;
-  padding: 11px 16px;
+  padding: 12px 18px;
 }
 
 .evarch-studio .cms-guide button:hover:not(:disabled) {
@@ -2976,23 +3186,24 @@ a:focus-visible {
 /* Studio-only image context: the native Sanity image input remains directly below. */
 .evarch-studio .client-image-input {
   display: grid;
-  gap: 14px;
+  gap: 16px;
 }
 
 .evarch-studio .client-image-input-preview {
   display: grid;
-  grid-template-columns: minmax(160px, 0.85fr) minmax(0, 1.15fr);
+  grid-template-columns: minmax(220px, 0.9fr) minmax(0, 1.1fr);
   overflow: hidden;
-  border: 1px solid var(--card-border-color);
-  border-radius: 4px;
-  background: var(--card-bg-color);
+  border: 1px solid var(--evarch-studio-line);
+  border-radius: 7px;
+  background: var(--evarch-studio-panel);
+  box-shadow: 0 10px 24px rgba(50, 45, 38, 0.04);
 }
 
 .evarch-studio .client-image-input-preview img {
   display: block;
   width: 100%;
   height: 100%;
-  min-height: 132px;
+  min-height: 164px;
   object-fit: cover;
 }
 
@@ -3000,42 +3211,66 @@ a:focus-visible {
   display: grid;
   align-content: center;
   justify-items: start;
-  gap: 8px;
-  padding: 18px 20px;
+  gap: 11px;
+  padding: 26px 28px;
+}
+
+.evarch-studio .client-image-input-kicker {
+  margin: 0;
+  color: var(--evarch-studio-accent);
+  font-size: 0.7rem;
+  font-weight: 750;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
 }
 
 .evarch-studio .client-image-input-preview-copy strong {
-  color: var(--card-fg-color);
-  font-size: 0.9375rem;
+  color: var(--evarch-studio-ink);
+  font-size: 1.0625rem;
+  font-weight: 750;
   line-height: 1.45;
 }
 
 .evarch-studio .client-image-input-preview-copy span,
 .evarch-studio .client-image-input-empty {
-  color: var(--card-muted-fg-color);
-  font-size: 0.875rem;
-  line-height: 1.55;
+  color: var(--evarch-studio-muted);
+  font-size: 0.96875rem;
+  font-weight: 500;
+  line-height: 1.64;
 }
 
 .evarch-studio .client-image-input-empty {
+  display: grid;
+  gap: 6px;
   margin: 0;
-  padding: 14px 16px;
-  border: 1px dashed var(--card-border-color);
-  border-radius: 4px;
+  padding: 22px 24px;
+  border: 1px dashed var(--evarch-studio-line);
+  border-radius: 7px;
+  background: color-mix(in srgb, var(--evarch-studio-panel) 76%, transparent);
+}
+
+.evarch-studio .client-image-input-empty strong {
+  color: var(--evarch-studio-ink);
+  font-size: 1rem;
+  font-weight: 750;
+}
+
+.evarch-studio .client-image-input-empty span {
+  color: var(--evarch-studio-muted);
 }
 
 .evarch-studio .client-image-input-preview-copy button {
   margin-top: 4px;
-  border: 1px solid var(--card-border-color);
-  border-radius: 3px;
+  border: 1px solid var(--evarch-studio-line);
+  border-radius: 4px;
   background: transparent;
-  color: var(--card-fg-color);
+  color: var(--evarch-studio-ink);
   cursor: pointer;
   font: inherit;
-  font-size: 0.8125rem;
-  font-weight: 600;
+  font-size: 0.9375rem;
+  font-weight: 700;
   line-height: 1.25;
-  padding: 8px 10px;
+  padding: 11px 14px;
 }
 
 .evarch-studio .client-image-input-preview-copy button:hover {
@@ -3044,6 +3279,10 @@ a:focus-visible {
 }
 
 @media (max-width: 640px) {
+  .evarch-studio .cms-guide-workflow {
+    grid-template-columns: 1fr;
+  }
+
   .evarch-studio .client-image-input-preview {
     grid-template-columns: 1fr;
   }
@@ -3056,8 +3295,8 @@ a:focus-visible {
 
 @media (min-width: 1024px) {
   .evarch-studio #wrapper {
-    width: min(100%, 900px);
-    max-width: 900px;
+    width: min(100%, 1080px);
+    max-width: 1080px;
     margin-inline: auto;
   }
 

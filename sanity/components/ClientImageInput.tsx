@@ -43,15 +43,19 @@ export function ClientImageInput(props: ObjectInputProps) {
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src={imageUrl} alt="Gambar yang sedang digunakan" />
           <div className="client-image-input-preview-copy">
+            <p className="client-image-input-kicker">Konten visual aktif</p>
             <strong>Gambar yang sedang digunakan</strong>
-            <span>Gunakan kontrol di bawah untuk mengganti, mengatur crop, atau hotspot gambar.</span>
+            <span>Gunakan kontrol di bawah untuk mengganti gambar atau mengatur crop dan hotspot. Tombol hapus hanya melepas gambar dari konten ini, bukan menghapus file dari library media. Setelah selesai, klik Publish agar perubahan tampil di website.</span>
             <button type="button" onClick={handleUnset}>
               Hapus gambar dari konten ini
             </button>
           </div>
         </div>
       ) : (
-        <p className="client-image-input-empty">Belum ada gambar yang dipilih untuk konten ini.</p>
+        <div className="client-image-input-empty" role="status">
+          <strong>Belum ada gambar yang dipilih</strong>
+          <span>Upload atau pilih aset untuk konten ini, lalu klik Publish saat gambar sudah siap tampil di website.</span>
+        </div>
       )}
 
       {imageProps.renderDefault(imageProps)}
