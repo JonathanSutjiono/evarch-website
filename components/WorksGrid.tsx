@@ -100,7 +100,7 @@ export function WorksGrid({
                     {project.status ? <p><span>Status</span>{project.status}</p> : null}
                   </div>
                   <a className="project-link" href="#contact" aria-label={`Discuss ${project.title}`}>
-                    View Project
+                    Discuss this project
                   </a>
                 </div>
               </div>

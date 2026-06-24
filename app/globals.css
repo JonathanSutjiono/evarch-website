@@ -118,10 +118,10 @@ a:focus-visible {
 .eyebrow {
   margin: 0;
   color: var(--clay);
-  font-size: 0.72rem;
+  font-size: 0.78rem;
   font-weight: 700;
-  letter-spacing: 0.18em;
-  line-height: 1.6;
+  letter-spacing: 0.12em;
+  line-height: 1.55;
   text-transform: uppercase;
 }
 
@@ -182,16 +182,16 @@ a:focus-visible {
 
 .button {
   display: inline-flex;
-  min-height: 52px;
+  min-height: 54px;
   align-items: center;
   justify-content: center;
   border: 1px solid transparent;
   border-radius: 0;
   gap: 9px;
   padding: 0 22px;
-  font-size: 0.74rem;
+  font-size: 0.8125rem;
   font-weight: 700;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.075em;
   line-height: 1.2;
   text-align: center;
   text-transform: uppercase;
@@ -205,6 +205,12 @@ a:focus-visible {
 
 .button:hover {
   transform: translateY(-1px);
+}
+
+.button:active,
+.works-controls button:active,
+.menu-button:active {
+  transform: translateY(1px);
 }
 
 .whatsapp-icon {
@@ -310,7 +316,7 @@ a:focus-visible {
   height: 40px;
   place-items: center;
   border: 1px solid var(--charcoal);
-  font-size: 0.74rem;
+  font-size: 0.76rem;
   letter-spacing: 0.08em;
 }
 
@@ -340,9 +346,9 @@ a:focus-visible {
 .nav-cta {
   position: relative;
   color: var(--muted);
-  font-size: 0.72rem;
+  font-size: 0.78rem;
   font-weight: 700;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   transition: color 180ms ease;
 }
@@ -377,9 +383,12 @@ a:focus-visible {
 }
 
 .nav-cta {
+  display: inline-flex;
+  min-height: 40px;
+  align-items: center;
   border-bottom: 1px solid currentColor;
   color: var(--charcoal);
-  padding-bottom: 5px;
+  padding: 0 2px 1px;
 }
 
 .nav-cta::after {
@@ -475,8 +484,9 @@ a:focus-visible {
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(90deg, rgba(16, 16, 15, 0.7) 0%, rgba(16, 16, 15, 0.34) 52%, rgba(16, 16, 15, 0.08) 100%),
-    linear-gradient(0deg, rgba(16, 16, 15, 0.5) 0%, transparent 60%, rgba(16, 16, 15, 0.16) 100%);
+    radial-gradient(circle at 82% 38%, rgba(16, 16, 15, 0.11), transparent 38%),
+    linear-gradient(102deg, rgba(16, 16, 15, 0.68) 0%, rgba(16, 16, 15, 0.5) 38%, rgba(16, 16, 15, 0.31) 66%, rgba(16, 16, 15, 0.2) 100%),
+    linear-gradient(0deg, rgba(16, 16, 15, 0.46) 0%, transparent 58%, rgba(16, 16, 15, 0.12) 100%);
   z-index: -2;
 }
 
@@ -488,7 +498,7 @@ a:focus-visible {
     linear-gradient(0deg, rgba(255, 253, 248, 0.07) 1px, transparent 1px);
   background-size: 96px 96px;
   mask-image: linear-gradient(90deg, rgba(0, 0, 0, 0.62), transparent 76%);
-  opacity: 0.42;
+  opacity: 0.3;
   z-index: -1;
   animation: fade-in 1.4s ease both 500ms;
 }
@@ -500,8 +510,8 @@ a:focus-visible {
 
 .hero-copy {
   display: grid;
-  gap: 28px;
-  width: min(100%, 1120px);
+  gap: clamp(22px, 2vw, 28px);
+  width: min(100%, 1040px);
 }
 
 .hero-section .hero-copy .eyebrow {
@@ -513,13 +523,13 @@ a:focus-visible {
 }
 
 .hero-copy h1 {
-  max-width: 1120px;
+  max-width: 1000px;
   margin: 0;
   color: var(--warm-white);
-  font-size: clamp(3.8rem, 6.4vw, 6.4rem);
+  font-size: clamp(3.7rem, 6.05vw, 6.15rem);
   font-weight: 500;
   letter-spacing: 0;
-  line-height: 0.92;
+  line-height: 0.95;
   text-shadow: 0 2px 36px rgba(16, 16, 15, 0.28);
 }
 
@@ -549,15 +559,15 @@ a:focus-visible {
 }
 
 .hero-lede {
-  max-width: 680px;
-  color: rgba(255, 253, 248, 0.82);
+  max-width: 62ch;
+  color: rgba(255, 253, 248, 0.88);
   animation: fade-up 760ms ease both 560ms;
 }
 
 .hero-actions {
   display: flex;
   flex-wrap: wrap;
-  gap: 12px;
+  gap: 10px 12px;
   margin-top: 6px;
   animation: fade-up 760ms ease both 680ms;
 }
@@ -565,7 +575,7 @@ a:focus-visible {
 .hero-meta {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 12px;
+  gap: 0;
   margin-top: clamp(18px, 3vw, 38px);
   padding-top: 18px;
   max-width: 980px;
@@ -574,12 +584,21 @@ a:focus-visible {
 }
 
 .hero-meta span {
+  display: block;
+  min-width: 0;
+  border-left: 1px solid rgba(255, 253, 248, 0.22);
+  padding: 0 18px;
   color: rgba(255, 253, 248, 0.7);
-  font-size: 0.7rem;
+  font-size: 0.78rem;
   font-weight: 700;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.09em;
   line-height: 1.5;
   text-transform: uppercase;
+}
+
+.hero-meta span:first-child {
+  border-left: 0;
+  padding-left: 0;
 }
 
 .hero-section .button-dark {
@@ -607,21 +626,29 @@ a:focus-visible {
   color: var(--warm-white);
 }
 
+.hero-section .button-whatsapp {
+  border-color: rgba(255, 253, 248, 0.28);
+  background: rgba(16, 16, 15, 0.08);
+  padding-inline: 18px;
+}
+
 .hero-section .button-text:hover {
+  border-color: rgba(255, 253, 248, 0.62);
+  background: rgba(255, 253, 248, 0.08);
   color: #ead8ca;
 }
 
 .hero-scroll-indicator {
   position: absolute;
   right: max(20px, calc((100vw - 1240px) / 2));
-  bottom: 24px;
+  bottom: 96px;
   display: inline-flex;
   align-items: center;
   gap: 12px;
   color: rgba(255, 253, 248, 0.74);
-  font-size: 0.66rem;
+  font-size: 0.75rem;
   font-weight: 700;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
 }
 
@@ -755,9 +782,9 @@ a:focus-visible {
   border-block: 1px solid var(--line);
   padding-block: 14px;
   color: var(--clay);
-  font-size: 0.7rem;
+  font-size: 0.78rem;
   font-weight: 700;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.1em;
   line-height: 1.5;
   text-transform: uppercase;
 }
@@ -784,9 +811,9 @@ a:focus-visible {
 .works-showcase-top p {
   margin: 0;
   color: var(--muted);
-  font-size: 0.7rem;
+  font-size: 0.78rem;
   font-weight: 700;
-  letter-spacing: 0.13em;
+  letter-spacing: 0.09em;
   text-transform: uppercase;
 }
 
@@ -797,14 +824,14 @@ a:focus-visible {
 
 .works-controls button {
   min-width: 74px;
-  min-height: 38px;
+  min-height: 42px;
   border: 1px solid var(--line);
   background: transparent;
   color: var(--charcoal);
   cursor: pointer;
-  font-size: 0.68rem;
+  font-size: 0.78rem;
   font-weight: 700;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   transition:
     border-color 180ms ease,
@@ -918,7 +945,7 @@ a:focus-visible {
   top: 16px;
   color: rgba(255, 253, 248, 0.92);
   font-family: var(--font-geist-mono);
-  font-size: 0.76rem;
+  font-size: 0.8rem;
   text-shadow: 0 1px 18px rgba(28, 28, 26, 0.28);
   z-index: 2;
 }
@@ -929,9 +956,9 @@ a:focus-visible {
   justify-content: flex-end;
   gap: 16px;
   color: var(--muted-soft);
-  font-size: 0.68rem;
+  font-size: 0.78rem;
   font-weight: 700;
-  letter-spacing: 0.13em;
+  letter-spacing: 0.09em;
   text-transform: uppercase;
   opacity: 0.74;
   transition:
@@ -949,7 +976,7 @@ a:focus-visible {
   grid-template-columns: minmax(0, 0.82fr) minmax(320px, 0.48fr);
   gap: clamp(24px, 4vw, 58px);
   align-items: end;
-  margin-top: 20px;
+  margin-top: 22px;
   border-bottom: 1px solid var(--line);
   padding-bottom: 20px;
 }
@@ -971,7 +998,7 @@ a:focus-visible {
   gap: 8px;
   max-width: 420px;
   color: var(--muted);
-  font-size: 0.86rem;
+  font-size: 0.94rem;
   line-height: 1.65;
 }
 
@@ -983,18 +1010,18 @@ a:focus-visible {
   display: block;
   margin-bottom: 2px;
   color: var(--clay);
-  font-size: 0.68rem;
+  font-size: 0.78rem;
   font-weight: 700;
-  letter-spacing: 0.13em;
+  letter-spacing: 0.09em;
   text-transform: uppercase;
 }
 
 .project-link {
   position: relative;
   color: var(--charcoal);
-  font-size: 0.68rem;
+  font-size: 0.78rem;
   font-weight: 800;
-  letter-spacing: 0.13em;
+  letter-spacing: 0.09em;
   text-transform: uppercase;
   transition:
     color 180ms ease,
@@ -1050,9 +1077,9 @@ a:focus-visible {
   width: fit-content;
   border-bottom: 1px solid currentColor;
   color: var(--clay-dark);
-  font-size: 0.7rem;
+  font-size: 0.78rem;
   font-weight: 700;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.09em;
   text-transform: uppercase;
 }
 
@@ -1131,11 +1158,25 @@ a:focus-visible {
 }
 
 .studio-section .section-heading p:not(.eyebrow) {
+  position: relative;
   max-width: 52ch;
-  padding-left: clamp(16px, 2vw, 24px);
-  border-left: 1px solid rgba(181, 110, 73, 0.45);
+  border: 1px solid rgba(23, 21, 19, 0.1);
+  background: rgba(252, 250, 246, 0.54);
+  box-shadow: 0 18px 42px rgba(28, 28, 26, 0.035);
+  padding: clamp(20px, 2.5vw, 28px) clamp(20px, 2.6vw, 30px);
   font-size: clamp(1rem, 1.2vw, 1.14rem);
   line-height: 1.72;
+}
+
+.studio-section .section-heading p:not(.eyebrow)::before {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 2px;
+  background: var(--clay);
+  content: "";
+  opacity: 0.62;
 }
 
 .studio-grid,
@@ -1166,51 +1207,60 @@ a:focus-visible {
 .studio-notes {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  border-top: 1px solid var(--line);
+  gap: 12px;
 }
 
-.studio-notes div {
+.studio-notes article {
   position: relative;
   display: grid;
   align-content: start;
-  gap: 9px;
-  border-right: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
-  padding: clamp(22px, 2.4vw, 30px);
+  min-height: 256px;
+  gap: 12px;
+  overflow: hidden;
+  border: 1px solid rgba(23, 21, 19, 0.11);
+  background: rgba(252, 250, 246, 0.58);
+  box-shadow: 0 14px 32px rgba(28, 28, 26, 0.025);
+  padding: clamp(24px, 2.7vw, 34px);
   transition:
     background-color 180ms ease,
-    transform 180ms ease;
+    border-color 180ms ease,
+    box-shadow 220ms ease,
+    transform 220ms ease;
 }
 
-.studio-notes div::before {
+.studio-notes article::before {
   position: absolute;
-  top: -1px;
-  left: clamp(22px, 2.4vw, 30px);
-  width: 52px;
+  top: 0;
+  left: clamp(24px, 2.7vw, 34px);
+  width: 58px;
   height: 1px;
   background: var(--clay);
   content: "";
-  opacity: 0.65;
-  transform: scaleX(0.38);
+  opacity: 0.68;
+  transform: scaleX(0.72);
   transform-origin: left;
   transition: transform 220ms ease;
 }
 
-.studio-notes div:hover {
-  background: rgba(181, 110, 73, 0.035);
-  transform: translateY(-2px);
+.studio-notes article::after {
+  position: absolute;
+  top: 22px;
+  right: 22px;
+  width: 28px;
+  height: 1px;
+  background: rgba(181, 110, 73, 0.28);
+  content: "";
 }
 
-.studio-notes div:hover::before {
+.studio-notes article:hover {
+  border-color: rgba(181, 110, 73, 0.3);
+  background: rgba(255, 253, 248, 0.88);
+  box-shadow: 0 20px 40px rgba(28, 28, 26, 0.07);
+  transform: translateY(-3px);
+}
+
+.studio-notes article:hover::before {
   transform: scaleX(1);
-}
-
-.studio-notes div:first-child {
-  padding-left: clamp(22px, 2.4vw, 30px);
-}
-
-.studio-notes div:last-child {
-  border-right: 0;
 }
 
 .studio-notes span,
@@ -1218,7 +1268,7 @@ a:focus-visible {
 .article-number {
   color: var(--clay);
   font-family: var(--font-geist-mono);
-  font-size: 0.76rem;
+  font-size: 0.82rem;
 }
 
 .studio-principle-meta {
@@ -1230,21 +1280,21 @@ a:focus-visible {
 
 .studio-principle-meta small {
   color: color-mix(in srgb, var(--charcoal) 70%, transparent);
-  font-size: 0.68rem;
+  font-size: 0.78rem;
   font-weight: 700;
-  letter-spacing: 0.11em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
 }
 
 .studio-notes h3 {
-  margin-top: 12px;
-  font-size: clamp(1.35rem, 2vw, 1.75rem);
+  margin-top: 16px;
+  font-size: clamp(1.42rem, 2vw, 1.8rem);
   font-weight: 550;
   line-height: 1.12;
 }
 
 .studio-notes p {
-  max-width: 35ch;
+  max-width: 30ch;
   margin: 0;
   font-size: clamp(0.98rem, 1vw, 1.04rem);
   line-height: 1.68;
@@ -1256,32 +1306,36 @@ a:focus-visible {
   gap: clamp(24px, 4vw, 54px);
   align-items: center;
   margin-top: 28px;
-  border-block: 1px solid var(--line);
-  padding-block: 20px;
+  border: 1px solid rgba(23, 21, 19, 0.1);
+  background: rgba(252, 250, 246, 0.44);
+  box-shadow: 0 12px 28px rgba(28, 28, 26, 0.02);
+  padding: 20px clamp(20px, 3vw, 30px);
 }
 
 .studio-capabilities > p {
   margin: 0;
   color: var(--clay);
-  font-size: 0.7rem;
+  font-size: 0.78rem;
   font-weight: 700;
-  letter-spacing: 0.11em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
 }
 
 .studio-labels {
   display: flex;
   flex-wrap: wrap;
-  gap: 12px clamp(22px, 3vw, 38px);
+  gap: 10px clamp(20px, 2.8vw, 34px);
   margin: 0;
   color: color-mix(in srgb, var(--charcoal) 74%, transparent);
-  font-size: 0.78rem;
+  font-size: 0.84rem;
   font-weight: 650;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
 }
 
 .studio-labels span::before {
+  display: inline-block;
+  width: 14px;
   color: var(--clay);
   content: "+ ";
 }
@@ -1294,13 +1348,17 @@ a:focus-visible {
 
 .expertise-card {
   position: relative;
-  min-height: 214px;
+  min-height: 224px;
   border-right: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
+  background: rgba(252, 250, 246, 0.32);
+  box-shadow: inset 0 1px rgba(255, 253, 248, 0.64);
   padding: clamp(24px, 2.7vw, 32px);
   transition:
     background-color 180ms ease,
-    border-color 180ms ease;
+    border-color 180ms ease,
+    box-shadow 220ms ease,
+    transform 220ms ease;
 }
 
 .expertise-card::before {
@@ -1322,8 +1380,11 @@ a:focus-visible {
 }
 
 .expertise-card:hover {
-  background: rgba(181, 110, 73, 0.045);
+  z-index: 1;
+  background: rgba(255, 253, 248, 0.86);
   border-color: rgba(181, 110, 73, 0.22);
+  box-shadow: 0 16px 30px rgba(28, 28, 26, 0.055);
+  transform: translateY(-2px);
 }
 
 .expertise-card:hover::before {
@@ -1335,7 +1396,7 @@ a:focus-visible {
   margin-bottom: clamp(24px, 3vw, 40px);
   color: var(--clay);
   font-family: var(--font-geist-mono);
-  font-size: 0.7rem;
+  font-size: 0.78rem;
 }
 
 .expertise-card h3 {
@@ -1401,15 +1462,15 @@ a:focus-visible {
 
 .stra-intro-meta span {
   color: var(--clay);
-  font-size: 0.68rem;
+  font-size: 0.78rem;
   font-weight: 700;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
 }
 
 .stra-intro-meta strong {
   color: var(--charcoal);
-  font-size: 0.88rem;
+  font-size: 0.94rem;
   font-weight: 550;
   line-height: 1.45;
 }
@@ -1419,6 +1480,7 @@ a:focus-visible {
   gap: 24px;
   border: 1px solid var(--line);
   background: rgba(255, 253, 248, 0.56);
+  box-shadow: 0 18px 40px rgba(28, 28, 26, 0.035);
   padding: clamp(26px, 4vw, 42px);
 }
 
@@ -1459,9 +1521,9 @@ a:focus-visible {
 .dai-logo-card p {
   margin: 0;
   color: var(--muted);
-  font-size: 0.68rem;
+  font-size: 0.78rem;
   font-weight: 700;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.06em;
   line-height: 1.55;
   text-transform: uppercase;
 }
@@ -1509,8 +1571,8 @@ a:focus-visible {
 
 .stra-seal strong {
   max-width: 130px;
-  font-size: 0.76rem;
-  letter-spacing: 0.14em;
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
   line-height: 1.45;
   text-transform: uppercase;
 }
@@ -1519,9 +1581,9 @@ a:focus-visible {
   align-self: start;
   max-width: 120px;
   color: var(--muted);
-  font-size: 0.68rem;
+  font-size: 0.75rem;
   font-weight: 700;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.08em;
   line-height: 1.4;
   text-transform: uppercase;
 }
@@ -1569,9 +1631,11 @@ a:focus-visible {
 }
 
 .stra-disclaimer {
-  margin: -8px 0 0;
+  margin: 0;
+  border-top: 1px solid var(--line);
+  padding-top: 14px;
   color: var(--muted);
-  font-size: 0.72rem;
+  font-size: 0.82rem;
   line-height: 1.65;
 }
 
@@ -1590,10 +1654,10 @@ a:focus-visible {
 
 .stra-actions .button {
   width: 100%;
-  min-height: 52px;
+  min-height: 54px;
   padding-inline: 16px;
-  font-size: 0.74rem;
-  letter-spacing: 0.08em;
+  font-size: 0.8125rem;
+  letter-spacing: 0.065em;
 }
 
 .stra-actions .button-light {
@@ -1609,27 +1673,31 @@ a:focus-visible {
 .regulation-card {
   position: relative;
   display: grid;
-  grid-template-columns: minmax(180px, 0.32fr) minmax(0, 1fr) 44px 44px;
+  grid-template-columns: minmax(180px, 0.32fr) minmax(0, 1fr) 44px;
   gap: clamp(24px, 4vw, 56px);
   align-items: start;
   min-height: 208px;
   min-width: 0;
   border-bottom: 1px solid var(--line);
+  background: rgba(252, 250, 246, 0.18);
   padding: clamp(24px, 3vw, 36px);
-  transition: background-color 180ms ease;
+  transition:
+    background-color 180ms ease,
+    box-shadow 180ms ease;
 }
 
 .regulation-card:hover {
-  background: rgba(181, 110, 73, 0.04);
+  background: rgba(252, 250, 246, 0.72);
+  box-shadow: inset 3px 0 var(--clay);
 }
 
 .article-meta {
   display: grid;
   gap: 10px;
   color: var(--clay);
-  font-size: 0.68rem;
+  font-size: 0.78rem;
   font-weight: 700;
-  letter-spacing: 0.13em;
+  letter-spacing: 0.09em;
   line-height: 1.5;
   text-transform: uppercase;
 }
@@ -1643,18 +1711,6 @@ a:focus-visible {
 .article-number {
   justify-self: end;
   color: rgba(169, 104, 76, 0.72);
-}
-
-.article-arrow {
-  align-self: center;
-  color: var(--clay);
-  font-family: var(--font-geist-mono);
-  font-size: 1rem;
-  transition: transform 180ms ease;
-}
-
-.regulation-card:hover .article-arrow {
-  transform: translateX(5px);
 }
 
 .process-section {
@@ -1712,12 +1768,20 @@ a:focus-visible {
   grid-template-columns: 72px minmax(0, 1fr);
   gap: 20px;
   border-bottom: 1px solid var(--line);
-  padding: 30px 28px 30px 0;
-  transition: background-color 180ms ease;
+  background: rgba(252, 250, 246, 0.22);
+  padding: 32px 28px 32px 0;
+  transition:
+    background-color 180ms ease,
+    box-shadow 180ms ease;
 }
 
 .process-list li:nth-child(odd) {
   border-right: 1px solid var(--line);
+}
+
+.process-list li:last-child:nth-child(odd) {
+  grid-column: 1 / -1;
+  border-right: 0;
 }
 
 .process-list li::after {
@@ -1734,7 +1798,8 @@ a:focus-visible {
 }
 
 .process-list li:hover {
-  background: rgba(181, 110, 73, 0.045);
+  background: rgba(255, 253, 248, 0.62);
+  box-shadow: inset 3px 0 var(--clay);
 }
 
 .process-index {
@@ -1745,9 +1810,9 @@ a:focus-visible {
 
 .process-index small {
   color: var(--muted);
-  font-size: 0.68rem;
+  font-size: 0.78rem;
   font-weight: 700;
-  letter-spacing: 0.11em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
 }
 
@@ -1803,7 +1868,7 @@ a:focus-visible {
 
 .contact-panel {
   display: grid;
-  gap: 26px;
+  gap: 28px;
   align-content: start;
   border: 1px solid var(--line);
   background: rgba(255, 253, 248, 0.78);
@@ -1871,9 +1936,9 @@ a:focus-visible {
 
 .contact-credential-copy p {
   color: var(--clay);
-  font-size: 0.68rem;
+  font-size: 0.78rem;
   font-weight: 700;
-  letter-spacing: 0.13em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
 }
 
@@ -1886,7 +1951,7 @@ a:focus-visible {
 
 .contact-credential-copy span {
   color: var(--muted);
-  font-size: 0.78rem;
+  font-size: 0.84rem;
   line-height: 1.55;
 }
 
@@ -1914,9 +1979,9 @@ a:focus-visible {
 .contact-panel dt {
   margin-bottom: 7px;
   color: var(--clay);
-  font-size: 0.7rem;
+  font-size: 0.78rem;
   font-weight: 700;
-  letter-spacing: 0.13em;
+  letter-spacing: 0.09em;
   text-transform: uppercase;
 }
 
@@ -1955,9 +2020,9 @@ a:focus-visible {
   border-top: 1px solid var(--line);
   padding-top: 18px;
   color: var(--muted);
-  font-size: 0.72rem;
+  font-size: 0.78rem;
   font-weight: 700;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.09em;
   text-transform: uppercase;
 }
 
@@ -1967,22 +2032,29 @@ a:focus-visible {
   bottom: max(22px, calc(env(safe-area-inset-bottom) + 16px));
   z-index: 50;
   display: grid;
-  width: 50px;
-  height: 50px;
+  width: 54px;
+  height: 54px;
   place-items: center;
   border: 1px solid rgba(255, 253, 248, 0.7);
   border-radius: 999px;
-  background: var(--clay);
+  background: #a86447;
   color: var(--warm-white);
-  box-shadow: 0 16px 34px rgba(28, 28, 26, 0.18);
+  box-shadow: 0 14px 30px rgba(28, 28, 26, 0.2), 0 0 0 5px rgba(247, 244, 238, 0.24);
   transition:
     background-color 180ms ease,
+    opacity 180ms ease,
     transform 180ms ease;
 }
 
 .floating-whatsapp:hover {
   transform: translateY(-2px);
   background: var(--clay-dark);
+}
+
+.floating-whatsapp.is-hidden-during-hero {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(10px);
 }
 
 .whatsapp-icon-floating {
@@ -2018,7 +2090,7 @@ a:focus-visible {
 .reveal.is-visible .expertise-card,
 .reveal.is-visible .regulation-card,
 .reveal.is-visible .process-list li,
-.reveal.is-visible .studio-notes div {
+.reveal.is-visible .studio-notes article {
   animation: fade-up 720ms cubic-bezier(0.22, 1, 0.36, 1) backwards;
 }
 
@@ -2026,7 +2098,7 @@ a:focus-visible {
 .reveal.is-visible .expertise-card:nth-child(2),
 .reveal.is-visible .regulation-card:nth-child(2),
 .reveal.is-visible .process-list li:nth-child(2),
-.reveal.is-visible .studio-notes div:nth-child(2) {
+.reveal.is-visible .studio-notes article:nth-child(2) {
   animation-delay: 90ms;
 }
 
@@ -2034,7 +2106,7 @@ a:focus-visible {
 .reveal.is-visible .expertise-card:nth-child(3),
 .reveal.is-visible .regulation-card:nth-child(3),
 .reveal.is-visible .process-list li:nth-child(3),
-.reveal.is-visible .studio-notes div:nth-child(3) {
+.reveal.is-visible .studio-notes article:nth-child(3) {
   animation-delay: 180ms;
 }
 
@@ -2209,22 +2281,56 @@ a:focus-visible {
   }
 
   .regulation-card {
-    grid-template-columns: minmax(150px, 0.35fr) minmax(0, 1fr) 36px 36px;
+    grid-template-columns: minmax(150px, 0.35fr) minmax(0, 1fr) 36px;
   }
 }
 
 @media (max-width: 860px) {
   .nav-shell {
-    grid-template-columns: auto 1fr auto;
+    min-height: 72px;
+    grid-template-columns: minmax(0, 1fr) auto auto;
+    gap: 10px;
   }
 
-  .desktop-nav,
-  .nav-cta {
+  .desktop-nav {
     display: none;
+  }
+
+  .brand-mark {
+    min-width: 0;
+    white-space: nowrap;
+  }
+
+  .brand-logo {
+    max-width: 148px;
+    height: 34px;
+  }
+
+  .nav-cta {
+    display: inline-flex;
+    min-height: 44px;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(255, 253, 248, 0.42);
+    color: var(--warm-white);
+    font-size: 0.78rem;
+    letter-spacing: 0.07em;
+    padding: 0 11px;
+  }
+
+  .nav-cta::after {
+    display: none;
+  }
+
+  .site-header.is-scrolled .nav-cta {
+    border-color: var(--line);
+    color: var(--charcoal);
   }
 
   .menu-button {
     display: flex;
+    width: 48px;
+    height: 48px;
     justify-self: end;
   }
 
@@ -2237,16 +2343,58 @@ a:focus-visible {
   }
 
   .mobile-nav a {
-    padding: 17px 18px;
+    display: flex;
+    min-height: 56px;
+    align-items: center;
+    padding: 16px 18px;
     border-bottom: 1px solid var(--line);
+    color: var(--charcoal);
+    font-size: 0.875rem;
+    letter-spacing: 0.075em;
   }
 
   .mobile-nav a:last-child {
     border-bottom: 0;
   }
 
+  .hero-section {
+    padding-top: clamp(118px, 15vh, 144px);
+    padding-bottom: clamp(72px, 9vh, 96px);
+  }
+
+  .hero-copy {
+    gap: 24px;
+  }
+
   .hero-copy h1 {
-    font-size: clamp(3.3rem, 9vw, 5.8rem);
+    font-size: clamp(3rem, 9vw, 5.4rem);
+  }
+
+  .hero-lede {
+    font-size: 1.05rem;
+    line-height: 1.68;
+  }
+
+  .hero-meta {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px 22px;
+    max-width: 640px;
+    margin-top: 20px;
+    padding-top: 20px;
+  }
+
+  .hero-meta span {
+    border-left: 0;
+    padding: 0;
+    color: rgba(255, 253, 248, 0.82);
+    font-size: 0.8125rem;
+    letter-spacing: 0.025em;
+    line-height: 1.48;
+    text-transform: none;
+  }
+
+  .hero-scroll-indicator {
+    display: none;
   }
 
   .expertise-grid,
@@ -2276,6 +2424,8 @@ a:focus-visible {
   .project-content {
     grid-template-columns: 1fr;
     gap: 14px;
+    margin-top: 18px;
+    padding-bottom: 22px;
   }
 
   .project-meta {
@@ -2286,13 +2436,13 @@ a:focus-visible {
     grid-template-columns: 1fr;
   }
 
-  .studio-notes div,
-  .studio-notes div:first-child {
-    border-right: 0;
+  .studio-notes article {
+    min-height: auto;
     padding-inline: clamp(20px, 4vw, 30px);
+    padding-block: 28px;
   }
 
-  .studio-notes div::before {
+  .studio-notes article::before {
     left: clamp(20px, 4vw, 30px);
   }
 
@@ -2303,6 +2453,12 @@ a:focus-visible {
 
   .project-detail {
     max-width: none;
+  }
+
+  .project-link {
+    display: inline-flex;
+    min-height: 44px;
+    align-items: center;
   }
 
   .expertise-card,
@@ -2367,15 +2523,15 @@ a:focus-visible {
   }
 
   .studio-section .section-heading p:not(.eyebrow) {
-    padding-left: 14px;
+    padding: 18px 18px 18px 20px;
     font-size: 1rem;
     line-height: 1.65;
   }
 
   .hero-section.section-pad {
     min-height: 100svh;
-    padding-top: 112px;
-    padding-bottom: 44px;
+    padding-top: 100px;
+    padding-bottom: 64px;
   }
 
   .button .whatsapp-icon {
@@ -2425,7 +2581,7 @@ a:focus-visible {
   }
 
   .contact-credential-mark small {
-    font-size: 0.42rem;
+    font-size: 0.5rem;
   }
 
   .contact-credential > a {
@@ -2455,9 +2611,8 @@ a:focus-visible {
   }
 
   .hero-meta {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 12px 18px;
-    margin-top: 16px;
+    gap: 13px 18px;
+    margin-top: 18px;
   }
 
   .stra-identity-row {
@@ -2473,6 +2628,15 @@ a:focus-visible {
 
   .stra-actions {
     grid-template-columns: 1fr;
+  }
+
+  .stra-panel {
+    gap: 22px;
+    padding: 24px;
+  }
+
+  .stra-disclaimer {
+    padding-top: 12px;
   }
 
   .studio-capabilities {
@@ -2491,16 +2655,16 @@ a:focus-visible {
   }
 
   .hero-copy {
-    gap: 20px;
+    gap: 18px;
   }
 
   .hero-copy h1 {
-    font-size: clamp(2.8rem, 11.5vw, 4.15rem);
-    line-height: 0.96;
+    font-size: clamp(2.7rem, 11.5vw, 4.15rem);
+    line-height: 0.97;
   }
 
   .hero-background-image {
-    object-position: 58% center;
+    object-position: 60% center;
   }
 
   .hero-scroll-indicator {
@@ -2525,7 +2689,8 @@ a:focus-visible {
 
   .brand-mark {
     gap: 10px;
-    font-size: 0.8rem;
+    font-size: 0.84rem;
+    letter-spacing: 0.11em;
   }
 
   .brand-symbol {
@@ -2533,20 +2698,87 @@ a:focus-visible {
     height: 38px;
   }
 
+  .brand-logo {
+    max-width: 120px;
+    height: 32px;
+  }
+
+  .nav-cta {
+    min-height: 44px;
+    font-size: 0.78rem;
+    padding-inline: 10px;
+  }
+
+  .menu-button {
+    width: 46px;
+    height: 46px;
+  }
+
   .button {
     padding-inline: 16px;
-    font-size: 0.72rem;
+    font-size: 0.8125rem;
+  }
+
+  .works-controls button {
+    min-height: 44px;
+    font-size: 0.8125rem;
+  }
+
+  .eyebrow,
+  .works-kicker,
+  .works-showcase-top p,
+  .project-image span,
+  .project-meta,
+  .project-detail span,
+  .project-link,
+  .studio-principle-meta small,
+  .studio-capabilities > p,
+  .expertise-index,
+  .stra-intro-meta span,
+  .dai-logo-card p,
+  .stra-disclaimer,
+  .article-meta,
+  .process-index small,
+  .contact-map-link,
+  .contact-credential-copy p,
+  .contact-panel dt,
+  .footer-links a,
+  .footer-bottom {
+    font-size: 0.8125rem;
+    letter-spacing: 0.06em;
+  }
+
+  .project-detail,
+  .studio-notes p,
+  .expertise-card p,
+  .regulation-card p,
+  .process-list p,
+  .contact-credential-copy span,
+  .contact-panel dd,
+  .site-footer p {
+    font-size: 0.9375rem;
+    line-height: 1.7;
+  }
+
+  .stra-seal strong {
+    font-size: 0.8125rem;
+    letter-spacing: 0.1em;
+  }
+
+  .stra-seal small {
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
   }
 
   .floating-whatsapp {
-    right: max(16px, calc(env(safe-area-inset-right) + 12px));
-    bottom: max(16px, calc(env(safe-area-inset-bottom) + 12px));
-    width: 48px;
-    height: 48px;
+    right: max(16px, calc(env(safe-area-inset-right) + 14px));
+    bottom: max(20px, calc(env(safe-area-inset-bottom) + 16px));
+    width: 52px;
+    height: 52px;
   }
 
   .site-footer {
-    padding-bottom: 84px;
+    padding-bottom: 100px;
   }
 }
 
@@ -2567,7 +2799,8 @@ a:focus-visible {
 
   .hero-plane,
   .project-card:hover,
-  .studio-notes div:hover,
+  .studio-notes article:hover,
+  .expertise-card:hover,
   .project-card:hover h3,
   .button:hover,
   .floating-whatsapp:hover,

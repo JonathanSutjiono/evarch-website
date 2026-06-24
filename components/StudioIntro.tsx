@@ -17,14 +17,14 @@ export function StudioIntro({ content = fallbackContent.about }: StudioIntroProp
 
         <div className="studio-notes">
           {content.values.map((value, index) => (
-            <div key={`${value.title}-${index}`}>
+            <article key={`${value.title}-${index}`}>
               <div className="studio-principle-meta">
                 <span>{String(index + 1).padStart(2, "0")}</span>
                 <small>Design principle</small>
               </div>
               <h3>{value.title}</h3>
               <p>{value.description}</p>
-            </div>
+            </article>
           ))}
         </div>
         <div className="studio-capabilities">

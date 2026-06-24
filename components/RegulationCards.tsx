@@ -32,7 +32,6 @@ export function RegulationCards({ items = regulations }: RegulationCardsProps) {
                 <h3>{article.title}</h3>
                 {article.description ? <p>{article.description}</p> : null}
               </div>
-              <span className="article-arrow" aria-hidden="true">-&gt;</span>
               <span className="article-number">{String(index + 1).padStart(2, "0")}</span>
             </article>
           ))}
