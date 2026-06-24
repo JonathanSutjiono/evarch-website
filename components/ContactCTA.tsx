@@ -94,6 +94,9 @@ export function ContactCTA({
               </dd>
             </div>
           </dl>
+          <p className="contact-privacy-note">
+            Contact details submitted through WhatsApp or email are used only to respond to your architectural consultation request.
+          </p>
           {content.googleMapsUrl ? (
             <a className="contact-map-link" href={content.googleMapsUrl} target="_blank" rel="noopener noreferrer">
               Open location in Google Maps

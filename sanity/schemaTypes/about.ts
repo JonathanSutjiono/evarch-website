@@ -25,7 +25,9 @@ export const about = defineType({
         defineField({ name: "description", title: "Penjelasan prinsip", description: "Tampil di bawah nama prinsip. Gunakan bahasa singkat, konkret, dan mudah dipahami calon klien, lalu klik Publish.", type: "text", rows: 3 }),
       ] })],
     }),
-    defineField({ name: "image", title: "Gambar Studio", description: "Disiapkan sebagai aset visual Studio untuk penggunaan tampilan berikutnya. Gunakan gambar arsitektur landscape yang bersih. Untuk mengganti atau menghapus gambar dari dokumen ini, gunakan kontrol gambar lalu klik Publish.", type: "image", options: { hotspot: true }, components: { input: ClientImageInput }, fieldset: "visual" }),
+    defineField({ name: "image", title: "Gambar Studio", description: "Disiapkan sebagai aset visual Studio untuk penggunaan tampilan berikutnya. Gunakan gambar arsitektur landscape yang bersih. Untuk mengganti atau menghapus gambar dari dokumen ini, gunakan kontrol gambar lalu klik Publish.", type: "image", options: { hotspot: true }, fields: [
+      defineField({ name: "alt", title: "Alt text gambar", description: "Jelaskan isi gambar Studio secara singkat untuk aksesibilitas.", type: "string", validation: (rule) => rule.warning("Tambahkan alt text sebelum produksi final.") }),
+    ], components: { input: ClientImageInput }, fieldset: "visual" }),
   ],
   preview: { prepare: () => ({ title: "Studio / Tentang EVARCH" }) },
 });

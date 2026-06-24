@@ -1,6 +1,7 @@
 import { regulations } from "@/data/regulations";
 import { SectionHeader } from "@/components/SectionHeader";
 import type { ResolvedHomeContent } from "@/sanity/lib/fallback";
+import Link from "next/link";
 
 type RegulationCardsProps = {
   items?: ResolvedHomeContent["regulations"];
@@ -32,6 +33,11 @@ export function RegulationCards({ items = regulations }: RegulationCardsProps) {
                 <h3>{article.title}</h3>
                 {article.description ? <p>{article.description}</p> : null}
               </div>
+              {article.slug ? (
+                <Link className="article-link" href={`/regulation/${article.slug}`} aria-label={`Read ${article.title}`}>
+                  Read note
+                </Link>
+              ) : null}
               <span className="article-number">{String(index + 1).padStart(2, "0")}</span>
             </article>
           ))}

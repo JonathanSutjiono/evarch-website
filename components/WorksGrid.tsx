@@ -2,6 +2,7 @@
 
 import { SectionHeader } from "@/components/SectionHeader";
 import Image from "next/image";
+import Link from "next/link";
 import { useRef } from "react";
 import { fallbackContent, type ResolvedHomeContent } from "@/sanity/lib/fallback";
 
@@ -99,9 +100,15 @@ export function WorksGrid({
                     {project.scope ? <p><span>Scope</span>{project.scope}</p> : null}
                     {project.status ? <p><span>Status</span>{project.status}</p> : null}
                   </div>
-                  <a className="project-link" href="#contact" aria-label={`Discuss ${project.title}`}>
-                    Discuss this project
-                  </a>
+                  {project.slug ? (
+                    <Link className="project-link" href={`/works/${project.slug}`} aria-label={`View ${project.title}`}>
+                      View project
+                    </Link>
+                  ) : (
+                    <a className="project-link" href="#contact" aria-label={`Discuss ${project.title}`}>
+                      Discuss this project
+                    </a>
+                  )}
                 </div>
               </div>
             </article>

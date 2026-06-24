@@ -41,6 +41,9 @@ export const homepage = defineType({
       description: "Gambar ini muncul besar di bagian pertama halaman utama saat website dibuka. Jika ingin mengganti, upload gambar baru lalu klik Publish. Rekomendasi: landscape 16:9, minimal 1920px lebar, tidak blur.",
       type: "image",
       options: { hotspot: true },
+      fields: [
+        defineField({ name: "alt", title: "Alt text gambar", description: "Teks singkat untuk aksesibilitas dan SEO. Jelaskan isi gambar tanpa promosi, lalu klik Publish.", type: "string", validation: (rule) => rule.warning("Tambahkan alt text agar gambar lebih aksesibel.") }),
+      ],
       components: { input: ClientImageInput },
       fieldset: "hero",
     }),

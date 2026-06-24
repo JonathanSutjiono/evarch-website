@@ -4,6 +4,7 @@ import { processSteps, type ProcessStep } from "@/data/process";
 import { projects as staticProjects, type Project } from "@/data/projects";
 import { regulations as staticRegulations, type RegulationArticle } from "@/data/regulations";
 import { navigation, site } from "@/data/site";
+import { slugify } from "@/lib/site";
 import { getOptimizedImageUrl, urlForImage } from "./image";
 
 type ImageValue = SanityImageSource & { alt?: string };
@@ -46,12 +47,14 @@ export type CmsHomeResponse = {
   projects?: Array<{
     _id: string;
     title?: string;
+    slug?: string;
     category?: string;
     location?: string;
     year?: string;
     scope?: string[];
     status?: string;
     coverImage?: ImageValue;
+    description?: string;
     showOnWebsite?: boolean;
   }>;
   about?: {
@@ -78,6 +81,7 @@ export type CmsHomeResponse = {
   regulations?: Array<{
     _id: string;
     title?: string;
+    slug?: string;
     category?: string;
     excerpt?: string;
     readTime?: string;
@@ -206,13 +210,15 @@ export function resolveHomeContent(data: CmsHomeResponse | null | undefined) {
       return image
         ? [{
             title: item.title!.trim(),
+            slug: item.slug?.trim() || slugify(item.title!.trim()),
             category: item.category?.trim(),
             location: item.location?.trim(),
             year: item.year?.trim(),
             scope: item.scope?.filter(Boolean).join(", "),
             status: item.status?.trim(),
+            description: item.description?.trim(),
             image,
-            imageAlt: `Architecture project image for ${item.title!.trim()}.`,
+            imageAlt: item.coverImage?.alt?.trim() || `Architecture project image for ${item.title!.trim()}.`,
           }]
         : [];
     });
@@ -230,6 +236,7 @@ export function resolveHomeContent(data: CmsHomeResponse | null | undefined) {
       category: item.category?.trim() || "",
       date: item.publishedAt?.slice(0, 4) || "",
       title: item.title!.trim(),
+      slug: item.slug?.trim() || slugify(item.title!.trim()),
       description: item.excerpt?.trim() || "",
       readTime: item.readTime?.trim() || "",
     }));

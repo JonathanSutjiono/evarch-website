@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
+import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { siteUrl } from "@/lib/site";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -12,8 +15,11 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const enableVercelInsights =
+  process.env.VERCEL === "1" || process.env.NEXT_PUBLIC_ENABLE_VERCEL_INSIGHTS === "true";
+
 export const metadata: Metadata = {
-  metadataBase: new URL("https://evarch.id"),
+  metadataBase: new URL(siteUrl),
   title: {
     default: "EVARCH.ID - Architecture Studio & STRA-Verified Architect",
     template: "%s | EVARCH.ID",
@@ -33,29 +39,23 @@ export const metadata: Metadata = {
     title: "EVARCH.ID - Architecture Studio & STRA-Verified Architect",
     description:
       "Residential and commercial architecture, planning consultation, and regulation-aware architectural practice in Indonesia.",
-    url: "https://evarch.id",
+    url: siteUrl,
     siteName: "EVARCH.ID",
     locale: "en_ID",
     type: "website",
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "EVARCH.ID - Architecture Studio & STRA-Verified Architect",
+    description:
+      "Residential and commercial architecture, planning consultation, and regulation-aware architectural practice in Indonesia.",
+  },
+  alternates: {
+    canonical: "/",
+  },
   robots: {
     index: true,
     follow: true,
-  },
-};
-
-const organizationJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  name: "EVARCH.ID",
-  url: "https://evarch.id",
-  description:
-    "EVARCH.ID is an architecture studio for residential and commercial design, planning consultation, and regulation-aware architectural practice in Indonesia.",
-  areaServed: "Indonesia",
-  address: {
-    "@type": "PostalAddress",
-    addressLocality: "Jakarta",
-    addressCountry: "ID",
   },
 };
 
@@ -71,10 +71,12 @@ export default function RootLayout({
     >
       <body className="min-h-full">
         {children}
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
-        />
+        {enableVercelInsights ? (
+          <>
+            <Analytics />
+            <SpeedInsights />
+          </>
+        ) : null}
       </body>
     </html>
   );

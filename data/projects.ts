@@ -1,10 +1,12 @@
 export type Project = {
   title: string;
+  slug?: string;
   category?: string;
   location?: string;
   year?: string;
   scope?: string;
   status?: string;
+  description?: string;
   image?: string;
   imageAlt: string;
 };
@@ -13,6 +15,7 @@ export type Project = {
 export const projects: Project[] = [
   {
     title: "House in Serpong",
+    slug: "house-in-serpong",
     category: "Residential Architecture",
     location: "Serpong, Tangerang",
     year: "2024",
@@ -25,6 +28,7 @@ export const projects: Project[] = [
   },
   {
     title: "Residence in Kelapa Gading",
+    slug: "residence-in-kelapa-gading",
     category: "Residential Architecture",
     location: "Kelapa Gading, Jakarta",
     year: "2025",
@@ -37,6 +41,7 @@ export const projects: Project[] = [
   },
   {
     title: "Villa in Bali",
+    slug: "villa-in-bali",
     category: "Villa Architecture",
     location: "Bali",
     year: "2024",
@@ -49,6 +54,7 @@ export const projects: Project[] = [
   },
   {
     title: "Office in Menteng",
+    slug: "office-in-menteng",
     category: "Commercial Architecture",
     location: "Menteng, Jakarta",
     year: "2025",
@@ -61,6 +67,7 @@ export const projects: Project[] = [
   },
   {
     title: "Commercial Space in Jakarta",
+    slug: "commercial-space-in-jakarta",
     category: "Commercial Architecture",
     location: "Jakarta",
     year: "2025",
@@ -73,6 +80,7 @@ export const projects: Project[] = [
   },
   {
     title: "Private House Renovation",
+    slug: "private-house-renovation",
     category: "Renovation / Interior Architecture",
     location: "Jakarta",
     year: "2024",

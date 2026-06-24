@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { draftMode } from "next/headers";
 import { ContactCTA } from "@/components/ContactCTA";
 import { ExpertiseGrid } from "@/components/ExpertiseGrid";
 import { FloatingWhatsApp } from "@/components/FloatingWhatsApp";
@@ -11,15 +12,16 @@ import { Reveal } from "@/components/Reveal";
 import { STRAVerification } from "@/components/STRAVerification";
 import { StudioIntro } from "@/components/StudioIntro";
 import { WorksGrid } from "@/components/WorksGrid";
-import { safeSanityFetch } from "@/sanity/lib/client";
+import { absoluteUrl, siteUrl } from "@/lib/site";
 import { resolveHomeContent, type CmsHomeResponse } from "@/sanity/lib/fallback";
 import { getOptimizedImageUrl } from "@/sanity/lib/image";
 import { homePageQuery, siteSettingsQuery } from "@/sanity/lib/queries";
+import { serverSanityFetch } from "@/sanity/lib/serverFetch";
 
 type CmsSiteSettings = NonNullable<CmsHomeResponse["siteSettings"]>;
 
 export async function generateMetadata(): Promise<Metadata> {
-  const settings = await safeSanityFetch<CmsSiteSettings>(siteSettingsQuery);
+  const settings = await serverSanityFetch<CmsSiteSettings>(siteSettingsQuery, {}, { tags: ["site-settings"] });
   const title = settings?.defaultSeoTitle || "EVARCH.ID - Architecture Studio & STRA-Verified Architect";
   const description = settings?.defaultSeoDescription ||
     "EVARCH.ID is an architecture studio for residential and commercial design, planning consultation, and regulation-aware architectural practice in Indonesia.";
@@ -36,17 +38,30 @@ export async function generateMetadata(): Promise<Metadata> {
     openGraph: {
       title,
       description,
-      url: "https://evarch.id",
+      url: siteUrl,
       siteName: "EVARCH.ID",
       type: "website",
       images: ogImage ? [{ url: ogImage }] : undefined,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: ogImage ? [ogImage] : undefined,
+    },
+    alternates: {
+      canonical: absoluteUrl("/"),
     },
     icons: favicon ? { icon: favicon } : undefined,
   };
 }
 
 export default async function Home() {
-  const sanityData = await safeSanityFetch<CmsHomeResponse>(homePageQuery);
+  const { isEnabled } = await draftMode();
+  const sanityData = await serverSanityFetch<CmsHomeResponse>(homePageQuery, {}, {
+    draft: isEnabled,
+    tags: ["home", "site-settings", "projects", "expertise", "process", "stra", "regulations", "contact", "footer"],
+  });
   const content = resolveHomeContent(sanityData);
   const hiddenAnchors = [
     ...(content.projects.length ? [] : ["#works"]),
@@ -56,6 +71,9 @@ export default async function Home() {
 
   return (
     <>
+      <a className="skip-link" href="#main-content">
+        Skip to main content
+      </a>
       <Navbar
         companyName={content.site.companyName}
         logoUrl={content.site.logoUrl}
@@ -63,7 +81,7 @@ export default async function Home() {
         whatsappUrl={content.site.whatsappUrl}
         hiddenAnchors={hiddenAnchors}
       />
-      <main>
+      <main id="main-content" tabIndex={-1}>
         <Hero
           content={content.homepage}
           whatsappUrl={content.site.whatsappUrl}
@@ -99,6 +117,25 @@ export default async function Home() {
           <ContactCTA content={content.contact} verificationUrl={content.stra.verificationUrl} />
         </Reveal>
       </main>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            name: content.site.companyName,
+            url: siteUrl,
+            email: content.site.email,
+            description: content.site.tagline,
+            areaServed: "Indonesia",
+            address: {
+              "@type": "PostalAddress",
+              addressLocality: "Jakarta",
+              addressCountry: "ID",
+            },
+          }),
+        }}
+      />
       <Footer
         content={content.footer}
         companyName={content.site.companyName}
